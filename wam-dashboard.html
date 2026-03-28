@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<script src="https://kit.fontawesome.com/3af0e60324.js" crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WAM CRM — Dashboard Admin</title>
@@ -139,7 +140,7 @@ body { font-family: var(--font); background: var(--bg); color: var(--text); line
 .stat-label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
 .stat-value { font-size: 32px; font-weight: 800; color: var(--text); font-family: var(--mono); }
 .stat-delta { font-size: 11px; color: var(--g); margin-top: 4px; }
-.stat-icon { position: absolute; right: 16px; top: 16px; font-size: 24px; opacity: .3; }
+.stat-icon { position: absolute; right: 16px; top: 16px; font-size: 24px; opacity: .3; color: var(--g); }
 
 /* TABLE */
 .table-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
@@ -302,23 +303,23 @@ tbody td { padding: 14px 20px; font-size: 13px; }
     <div class="nav-section">
       <div class="nav-label">Principal</div>
       <div class="nav-item active" onclick="showPage('dashboard')">
-        <span class="icon">📊</span> Dashboard
+        <span class="icon"><i class="fa-light fa-chart-line"></i></span> Dashboard
       </div>
       <div class="nav-item" onclick="showPage('leads')">
-        <span class="icon">👥</span> Leads
+        <span class="icon"><i class="fa-light fa-users"></i></span> Leads
         <span class="nav-badge" id="leads-count">0</span>
       </div>
       <div class="nav-item" onclick="showPage('clients')">
-        <span class="icon">✅</span> Clients
+        <span class="icon"><i class="fa-light fa-circle-check"></i></span> Clients
       </div>
       <div class="nav-item" onclick="showPage('agents')">
-        <span class="icon">🤝</span> Agents
+        <span class="icon"><i class="fa-light fa-handshake"></i></span> Agents
       </div>
     </div>
     <div class="nav-section">
       <div class="nav-label">Gestion</div>
       <div class="nav-item" onclick="showPage('equipe')">
-        <span class="icon">👤</span> Équipe
+        <span class="icon"><i class="fa-light fa-user-group"></i></span> Équipe
       </div>
     </div>
     <div class="sidebar-bottom">
@@ -328,7 +329,7 @@ tbody td { padding: 14px 20px; font-size: 13px; }
           <div class="user-name" id="user-name">Norbert</div>
           <div class="user-role" id="user-role">Super Admin</div>
         </div>
-        <button class="logout-btn" onclick="doLogout()" title="Déconnexion">⏻</button>
+        <button class="logout-btn" onclick="doLogout()" title="Déconnexion"><i class="fa-light fa-power-off"></i></button>
       </div>
     </div>
   </aside>
@@ -344,8 +345,8 @@ tbody td { padding: 14px 20px; font-size: 13px; }
           <div class="page-sub" id="dash-date">Chargement...</div>
         </div>
         <div class="topbar-actions">
-          <button class="btn btn-ghost" onclick="loadAll()">↻ Actualiser</button>
-          <button class="btn btn-primary" onclick="openAddLead()">+ Nouveau lead</button>
+          <button class="btn btn-ghost" onclick="loadAll()"><i class="fa-light fa-rotate"></i> Actualiser</button>
+          <button class="btn btn-primary" onclick="openAddLead()"><i class="fa-light fa-plus"></i> Nouveau lead</button>
         </div>
       </div>
       <div class="content">
@@ -393,7 +394,7 @@ tbody td { padding: 14px 20px; font-size: 13px; }
           <div class="page-sub">Tous les candidats et contacts</div>
         </div>
         <div class="topbar-actions">
-          <button class="btn btn-primary" onclick="openAddLead()">+ Nouveau lead</button>
+          <button class="btn btn-primary" onclick="openAddLead()"><i class="fa-light fa-plus"></i> Nouveau lead</button>
         </div>
       </div>
       <div class="content">
@@ -446,7 +447,7 @@ tbody td { padding: 14px 20px; font-size: 13px; }
           <div class="page-sub">Réseau de partenaires WAM</div>
         </div>
         <div class="topbar-actions">
-          <button class="btn btn-primary" onclick="openAddAgent()">+ Nouvel agent</button>
+          <button class="btn btn-primary" onclick="openAddAgent()"><i class="fa-light fa-plus"></i> Nouvel agent</button>
         </div>
       </div>
       <div class="content">
@@ -492,7 +493,7 @@ tbody td { padding: 14px 20px; font-size: 13px; }
 <!-- ADD LEAD MODAL -->
 <div class="modal-overlay" id="modal-lead">
   <div class="modal">
-    <div class="modal-title">➕ Nouveau Lead</div>
+    <div class="modal-title"><i class="fa-light fa-user-plus"></i> Nouveau Lead</div>
     <div class="form-grid">
       <div class="form-field"><label class="form-label">Nom *</label><input class="form-input" id="f-nom" placeholder="Diallo" /></div>
       <div class="form-field"><label class="form-label">Prénom</label><input class="form-input" id="f-prenom" placeholder="Mamadou" /></div>
@@ -529,7 +530,7 @@ tbody td { padding: 14px 20px; font-size: 13px; }
 <!-- ADD AGENT MODAL -->
 <div class="modal-overlay" id="modal-agent">
   <div class="modal">
-    <div class="modal-title">🤝 Nouvel Agent</div>
+    <div class="modal-title"><i class="fa-light fa-handshake"></i> Nouvel Agent</div>
     <div class="form-grid">
       <div class="form-field"><label class="form-label">Nom *</label><input class="form-input" id="a-nom" placeholder="Nom" /></div>
       <div class="form-field"><label class="form-label">Prénom</label><input class="form-input" id="a-prenom" placeholder="Prénom" /></div>
@@ -699,7 +700,7 @@ function fmtDate(d) {
 
 function renderLeads(leads) {
   const el = document.getElementById('leads-table');
-  if (!leads.length) { el.innerHTML = '<div class="empty"><div class="empty-icon">👥</div><div class="empty-text">Aucun lead trouvé</div></div>'; return; }
+  if (!leads.length) { el.innerHTML = '<div class="empty"><div class="empty-icon"><i class="fa-light fa-users-slash" style="font-size:40px;opacity:.4"></i></div><div class="empty-text">Aucun lead trouvé</div></div>'; return; }
   el.innerHTML = `<table><thead><tr>
     <th>Candidat</th><th>Programme</th><th>Statut</th><th>Source</th><th>Date</th>
   </tr></thead><tbody>${leads.map(l=>`
@@ -714,7 +715,7 @@ function renderLeads(leads) {
 
 function renderRecentLeads(leads) {
   const el = document.getElementById('recent-leads-table');
-  if (!leads.length) { el.innerHTML = '<div class="empty"><div class="empty-icon">👥</div><div class="empty-text">Aucun lead encore</div></div>'; return; }
+  if (!leads.length) { el.innerHTML = '<div class="empty"><div class="empty-icon"><i class="fa-light fa-users" style="font-size:40px;opacity:.4"></i></div><div class="empty-text">Aucun lead encore</div></div>'; return; }
   el.innerHTML = `<table><thead><tr><th>Candidat</th><th>Programme</th><th>Statut</th><th>Date</th></tr></thead>
   <tbody>${leads.map(l=>`
     <tr onclick="showPage('leads')">
@@ -727,7 +728,7 @@ function renderRecentLeads(leads) {
 
 function renderClients(clients) {
   const el = document.getElementById('clients-table');
-  if (!clients.length) { el.innerHTML = '<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">Aucun client encore</div></div>'; return; }
+  if (!clients.length) { el.innerHTML = '<div class="empty"><div class="empty-icon"><i class="fa-light fa-circle-check" style="font-size:40px;opacity:.4"></i></div><div class="empty-text">Aucun client encore</div></div>'; return; }
   el.innerHTML = `<table><thead><tr><th>Client</th><th>Programme</th><th>Statut dossier</th><th>Destination</th><th>Solde</th></tr></thead>
   <tbody>${clients.map(c=>`
     <tr>
@@ -741,7 +742,7 @@ function renderClients(clients) {
 
 function renderAgents(agents) {
   const el = document.getElementById('agents-table');
-  if (!agents.length) { el.innerHTML = '<div class="empty"><div class="empty-icon">🤝</div><div class="empty-text">Aucun agent encore</div></div>'; return; }
+  if (!agents.length) { el.innerHTML = '<div class="empty"><div class="empty-icon"><i class="fa-light fa-handshake" style="font-size:40px;opacity:.4"></i></div><div class="empty-text">Aucun agent encore</div></div>'; return; }
   el.innerHTML = `<table><thead><tr><th>Agent</th><th>Code réf.</th><th>Leads</th><th>Convertis</th><th>Commissions</th><th>Statut</th></tr></thead>
   <tbody>${agents.map(a=>`
     <tr>
@@ -756,7 +757,7 @@ function renderAgents(agents) {
 
 function renderEquipe(equipe) {
   const el = document.getElementById('equipe-table');
-  if (!equipe.length) { el.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><div class="empty-text">Aucun membre</div></div>'; return; }
+  if (!equipe.length) { el.innerHTML = '<div class="empty"><div class="empty-icon"><i class="fa-light fa-user" style="font-size:40px;opacity:.4"></i></div><div class="empty-text">Aucun membre</div></div>'; return; }
   el.innerHTML = `<table><thead><tr><th>Membre</th><th>Rôle</th><th>Statut</th><th>Depuis</th></tr></thead>
   <tbody>${equipe.map(m=>`
     <tr>
