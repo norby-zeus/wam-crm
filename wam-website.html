@@ -1,0 +1,2926 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAM – West Africa Mobility | Work & Study in Europe</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   WAM – West Africa Mobility | Design System v2
+   Operated by SMARTGROUP GLOBAL SRL, Bucharest, Romania
+   CRM-ready | n8n webhook-ready | Lead Capture Architecture
+   ============================================================ */
+:root {
+  --black:#111111; --white:#FFFFFF;
+  --green:#0F8B6D; --green-dark:#0A5C49; --green-light:#E8F5F1; --green-xlight:#F0FAF7;
+  --gold:#C9A227; --gold-light:#F5E9C0;
+  --gray-bg:#F5F7F8; --gray-text:#5E6470; --gray-border:#E2E6EA;
+  --shadow-sm:0 2px 12px rgba(0,0,0,0.06);
+  --shadow-md:0 8px 32px rgba(0,0,0,0.10);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.14);
+  --radius:14px; --radius-sm:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--black);overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:68px;transition:box-shadow 0.3s;}
+nav.scrolled{box-shadow:var(--shadow-md);}
+.nav-logo{font-family:'Sora',sans-serif;font-size:1.45rem;font-weight:800;color:var(--black);
+  text-decoration:none;display:flex;align-items:center;gap:0.4rem;cursor:pointer;}
+.nav-logo .dot{color:var(--green);}
+.nav-links{display:flex;gap:0.2rem;align-items:center;list-style:none;}
+.nav-links a{padding:0.45rem 0.85rem;border-radius:6px;color:var(--gray-text);
+  font-size:0.875rem;font-weight:500;text-decoration:none;transition:all 0.2s;white-space:nowrap;cursor:pointer;}
+.nav-links a:hover,.nav-links a.active{color:var(--black);background:var(--gray-bg);}
+.nav-actions{display:flex;gap:0.6rem;align-items:center;}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.3rem;
+  border-radius:8px;font-weight:600;font-size:0.875rem;cursor:pointer;
+  text-decoration:none;transition:all 0.25s;border:none;font-family:'Inter',sans-serif;}
+.btn-primary{background:var(--green);color:var(--white);}
+.btn-primary:hover{background:var(--green-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(15,139,109,0.35);}
+.btn-outline{background:transparent;color:var(--black);border:1.5px solid var(--gray-border);}
+.btn-outline:hover{border-color:var(--green);color:var(--green);}
+.btn-wa{background:#25D366;color:var(--white);}
+.btn-wa:hover{background:#1da851;transform:translateY(-1px);}
+.btn-lg{padding:0.85rem 2rem;font-size:1rem;border-radius:10px;}
+.btn-ghost{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.35);}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);}
+.btn-gold{background:var(--gold);color:var(--black);}
+.btn-gold:hover{background:#b8911f;transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,162,39,0.35);}
+.btn-dark{background:var(--black);color:var(--white);}
+.btn-dark:hover{background:#333;transform:translateY(-1px);}
+
+/* ── PAGES ── */
+.page{display:none;padding-top:68px;min-height:100vh;}
+.page.active{display:block;}
+
+/* ── VISUAL BLOCKS (placeholder images using CSS art) ── */
+.visual-block{border-radius:16px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;}
+
+/* Africa worker visual */
+.vis-africa-work{
+  background:linear-gradient(145deg,#1a2e1a 0%,#2d5a2d 40%,#3a7a3a 100%);
+  min-height:320px;
+}
+.vis-africa-work::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='400' height='320' viewBox='0 0 400 320' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='320' cy='60' r='80' fill='rgba(255,255,255,0.04)'/%3E%3Ccircle cx='50' cy='280' r='60' fill='rgba(255,255,255,0.03)'/%3E%3Crect x='60' y='120' width='120' height='160' rx='8' fill='rgba(255,255,255,0.06)'/%3E%3Crect x='200' y='80' width='100' height='200' rx='8' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") center/cover;
+}
+.vis-europe-city{
+  background:linear-gradient(145deg,#0a1628 0%,#1a2a4a 50%,#2a3a5a 100%);
+  min-height:320px;
+}
+.vis-europe-city::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='400' height='320' viewBox='0 0 400 320' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='20' y='100' width='40' height='220' rx='3' fill='rgba(255,255,255,0.06)'/%3E%3Crect x='70' y='60' width='50' height='260' rx='3' fill='rgba(255,255,255,0.05)'/%3E%3Crect x='130' y='80' width='45' height='240' rx='3' fill='rgba(255,255,255,0.07)'/%3E%3Crect x='185' y='40' width='60' height='280' rx='3' fill='rgba(255,255,255,0.05)'/%3E%3Crect x='255' y='70' width='40' height='250' rx='3' fill='rgba(255,255,255,0.06)'/%3E%3Crect x='305' y='100' width='50' height='220' rx='3' fill='rgba(255,255,255,0.04)'/%3E%3Crect x='0' y='300' width='400' height='20' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E") center/cover;
+}
+.vis-student{
+  background:linear-gradient(145deg,#1a1a3a 0%,#2a2a5a 50%,#1a3a5a 100%);
+  min-height:320px;
+}
+.vis-student::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='400' height='320' viewBox='0 0 400 320' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='200' cy='120' r='70' fill='rgba(201,162,39,0.08)'/%3E%3Crect x='80' y='160' width='240' height='8' rx='4' fill='rgba(255,255,255,0.06)'/%3E%3Crect x='100' y='180' width='200' height='6' rx='3' fill='rgba(255,255,255,0.04)'/%3E%3Crect x='110' y='196' width='180' height='6' rx='3' fill='rgba(255,255,255,0.03)'/%3E%3Crect x='130' y='230' width='140' height='40' rx='8' fill='rgba(15,139,109,0.15)'/%3E%3C/svg%3E") center/cover;
+}
+.vis-meeting{
+  background:linear-gradient(145deg,#1a1010 0%,#2a2010 50%,#3a3010 100%);
+  min-height:260px;
+}
+
+/* Image overlay label */
+.vis-label{
+  position:absolute;bottom:1rem;left:1rem;right:1rem;
+  background:rgba(0,0,0,0.55);backdrop-filter:blur(8px);
+  border-radius:8px;padding:0.7rem 1rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.vis-label-text{color:white;font-size:0.82rem;font-weight:600;}
+.vis-label-badge{background:var(--green);color:white;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.72rem;font-weight:700;}
+.vis-icon-big{font-size:4rem;opacity:0.25;position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);}
+.vis-replace-note{position:absolute;top:0.7rem;right:0.7rem;background:rgba(201,162,39,0.9);color:#111;
+  padding:0.2rem 0.6rem;border-radius:4px;font-size:0.65rem;font-weight:700;letter-spacing:0.06em;}
+
+/* ── TRUST BADGES ── */
+.trust-badges{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;}
+.trust-badge{display:flex;align-items:center;gap:0.4rem;background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);border-radius:20px;
+  padding:0.35rem 0.85rem;font-size:0.78rem;color:rgba(255,255,255,0.7);}
+.trust-badge .tb-icon{color:#4ecba5;font-size:0.85rem;}
+.trust-badges-light .trust-badge{background:var(--green-light);border-color:rgba(15,139,109,0.2);color:var(--green-dark);}
+.trust-badges-light .trust-badge .tb-icon{color:var(--green);}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,var(--black) 0%,#1a2a22 100%);
+  padding:5rem 3rem 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 80% at 70% 50%,rgba(15,139,109,0.18) 0%,transparent 70%);}
+.hero-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(15,139,109,0.15);
+  border:1px solid rgba(15,139,109,0.3);color:#4ecba5;padding:0.35rem 0.9rem;
+  border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;margin-bottom:1.5rem;}
+.hero-badge::before{content:'';width:7px;height:7px;background:#4ecba5;border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero h1{font-family:'Sora',sans-serif;font-size:clamp(2.4rem,4vw,3.4rem);font-weight:800;
+  color:var(--white);line-height:1.12;margin-bottom:1.3rem;}
+.hero h1 span{color:#4ecba5;}
+.hero-sub{color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:480px;}
+.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:2rem;}
+.hero-visual{position:relative;}
+.hero-split{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;height:340px;}
+.hero-img{border-radius:12px;overflow:hidden;position:relative;}
+.hero-arrow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:var(--green);color:white;width:48px;height:48px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  box-shadow:0 0 0 10px rgba(15,139,109,0.2);z-index:10;animation:pulse-ring 2s infinite;}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 10px rgba(15,139,109,0.2)}50%{box-shadow:0 0 0 16px rgba(15,139,109,0.08)}}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;margin-top:1rem;}
+.hero-stat{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px;padding:1rem;text-align:center;}
+.hero-stat-num{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:800;color:#4ecba5;display:block;}
+.hero-stat-label{color:rgba(255,255,255,0.4);font-size:0.72rem;margin-top:0.2rem;}
+
+/* ── SECTIONS ── */
+section{padding:5rem 3rem;}
+.container{max-width:1200px;margin:0 auto;}
+.section-label{font-size:0.8rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);margin-bottom:0.7rem;}
+.section-title{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--black);line-height:1.2;margin-bottom:1rem;}
+.section-sub{color:var(--gray-text);font-size:1rem;line-height:1.75;max-width:540px;}
+.section-center{text-align:center;}
+.section-center .section-sub{margin:0 auto;}
+.bg-gray{background:var(--gray-bg);}
+.bg-black{background:var(--black);}
+.bg-green-xlight{background:var(--green-xlight);}
+
+/* ── GRID CARDS ── */
+.cards-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.cards-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem;}
+.cards-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;margin-top:3rem;}
+.card{background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:2rem;transition:all 0.3s;position:relative;overflow:hidden;}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--green);}
+.card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--green);transform:scaleX(0);transition:transform 0.3s;transform-origin:left;}
+.card:hover::after{transform:scaleX(1);}
+.card-icon{width:52px;height:52px;background:var(--green-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.2rem;}
+.card h3{font-family:'Sora',sans-serif;font-size:1.1rem;font-weight:700;color:var(--black);margin-bottom:0.6rem;}
+.card p{color:var(--gray-text);font-size:0.9rem;line-height:1.65;}
+.card-green{background:linear-gradient(135deg,var(--green),var(--green-dark));border:none;color:white;}
+.card-green::after{display:none;}
+.card-green h3,.card-green p{color:white;}
+.card-green .card-icon{background:rgba(255,255,255,0.15);}
+
+/* ── FEATURE ROW ── */
+.feature-row{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.feature-row.reverse{direction:rtl;}
+.feature-row.reverse>*{direction:ltr;}
+.feature-text{}
+.feature-text h2{font-family:'Sora',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;margin-bottom:1rem;line-height:1.25;}
+.feature-text p{color:var(--gray-text);line-height:1.8;margin-bottom:1.5rem;}
+
+/* ── PROCESS STEPS ── */
+.steps{display:flex;gap:0;margin-top:3.5rem;position:relative;}
+.steps::before{content:'';position:absolute;top:28px;left:60px;right:60px;height:2px;
+  background:linear-gradient(to right,var(--green),var(--gold));z-index:0;}
+.step{flex:1;text-align:center;position:relative;z-index:1;padding:0 1rem;}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--white);border:2px solid var(--green);
+  display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;
+  font-weight:800;font-size:1.1rem;color:var(--green);margin:0 auto 1rem;
+  box-shadow:0 0 0 6px var(--green-light);}
+.step h4{font-family:'Sora',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:0.4rem;}
+.step p{color:var(--gray-text);font-size:0.8rem;line-height:1.5;}
+.step-connector{flex:1;height:2px;background:var(--gray-border);margin-top:17px;}
+.step-connector.done{background:var(--green);}
+
+/* ── PROGRAM BLOCKS ── */
+.program-blocks{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
+.program-block{border-radius:20px;padding:3rem;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:340px;}
+.program-work{background:linear-gradient(135deg,#0a1a10 0%,#1a3a22 100%);}
+.program-study{background:linear-gradient(135deg,#0a1020 0%,#1a2a40 100%);}
+.program-block h3{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:800;color:white;margin-bottom:0.8rem;}
+.program-block p{color:rgba(255,255,255,0.65);font-size:0.95rem;line-height:1.7;margin-bottom:1.5rem;}
+.program-tag{display:inline-block;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);padding:0.25rem 0.7rem;border-radius:20px;font-size:0.75rem;font-weight:600;margin-bottom:1rem;}
+.program-icon{position:absolute;right:2rem;bottom:2rem;font-size:5rem;opacity:0.12;}
+
+/* ── SECTORS ── */
+.sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2.5rem;}
+.sector-card{background:var(--white);border:1.5px solid var(--gray-border);border-radius:var(--radius);padding:1.5rem 1rem;text-align:center;transition:all 0.25s;cursor:pointer;}
+.sector-card:hover{border-color:var(--green);background:var(--green-light);transform:translateY(-3px);}
+.sector-card .sector-icon{font-size:2rem;margin-bottom:0.7rem;display:block;}
+.sector-card span{font-size:0.85rem;font-weight:600;color:var(--black);}
+
+/* ── TRUST SECTION ── */
+.trust-items{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;}
+.trust-item-card{background:var(--white);border-radius:var(--radius);padding:1.8rem;text-align:center;border:1px solid var(--gray-border);transition:all 0.3s;}
+.trust-item-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+.trust-item-card .icon{font-size:2rem;margin-bottom:0.8rem;}
+.trust-item-card h4{font-family:'Sora',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:0.4rem;}
+.trust-item-card p{color:var(--gray-text);font-size:0.82rem;}
+
+/* ── CTA SECTION ── */
+.cta-section{background:linear-gradient(135deg,var(--green-dark),var(--green));padding:5rem 3rem;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(201,162,39,0.15) 0%,transparent 60%);}
+.cta-section h2{font-family:'Sora',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:white;margin-bottom:1rem;position:relative;}
+.cta-section p{color:rgba(255,255,255,0.75);font-size:1.05rem;margin-bottom:2rem;position:relative;}
+.cta-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* ── NOTICE BOX ── */
+.notice-box{background:var(--gold-light);border:1px solid var(--gold);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;gap:1rem;align-items:flex-start;margin-top:2rem;}
+.notice-box .notice-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px;}
+.notice-box p{color:#5a4010;font-size:0.9rem;line-height:1.65;}
+
+/* ── LISTS ── */
+.service-list{list-style:none;margin-top:1.2rem;display:flex;flex-direction:column;gap:0.6rem;}
+.service-list li{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.9rem;color:var(--gray-text);}
+.service-list li::before{content:'→';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-top:1.5rem;}
+.check-list li{display:flex;align-items:flex-start;gap:0.7rem;font-size:0.95rem;}
+.check-list li::before{content:'✓';background:var(--green);color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:800;flex-shrink:0;margin-top:2px;}
+.doc-list{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1.5rem;}
+.doc-item{background:var(--gray-bg);border-radius:8px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.6rem;font-size:0.88rem;font-weight:500;}
+.doc-item::before{content:'📄';font-size:1rem;}
+
+/* ── PAGE HERO ── */
+.page-hero{background:linear-gradient(135deg,var(--black) 0%,#152010 100%);padding:4.5rem 3rem;position:relative;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 80% 50%,rgba(15,139,109,0.15) 0%,transparent 70%);}
+.page-hero .container{position:relative;z-index:1;max-width:900px;}
+.page-hero h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;color:white;margin-bottom:1rem;}
+.page-hero h1 span{color:#4ecba5;}
+.page-hero p{color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.75;margin-bottom:2rem;max-width:560px;}
+.page-hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:center;max-width:1200px;}
+
+/* ── ABOUT ── */
+.about-hero{background:var(--black);padding:5rem 3rem;color:white;}
+.about-hero h1{font-family:'Sora',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1rem;}
+.about-hero h1 span{color:#4ecba5;}
+.values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:3rem;}
+.value-card{background:var(--green-light);border:1px solid rgba(15,139,109,0.2);border-radius:var(--radius);padding:1.5rem;text-align:center;}
+.value-card .vicon{font-size:1.8rem;margin-bottom:0.7rem;}
+.value-card h4{font-family:'Sora',sans-serif;font-weight:700;font-size:0.9rem;color:var(--green-dark);}
+.founder-card{background:var(--black);border-radius:20px;padding:3rem;margin-top:3rem;display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:center;}
+.founder-avatar{width:100px;height:100px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:white;font-family:'Sora',sans-serif;font-weight:800;flex-shrink:0;}
+.founder-card h3{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:white;margin-bottom:0.4rem;}
+.founder-card .founder-title{color:var(--green);font-size:0.85rem;font-weight:600;margin-bottom:0.8rem;}
+.founder-card p{color:rgba(255,255,255,0.65);font-size:0.95rem;line-height:1.7;}
+
+/* ── CONTACT ── */
+.contact-hero{background:var(--green-dark);padding:4rem 3rem;color:white;text-align:center;}
+.contact-hero h1{font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;margin-bottom:0.8rem;}
+.ci-icon{width:44px;height:44px;background:var(--green-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.ci-label{font-size:0.75rem;font-weight:600;color:var(--gray-text);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.25rem;}
+.ci-value{font-weight:600;color:var(--black);font-size:0.95rem;}
+.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start;margin-top:3rem;}
+.contact-items{display:flex;flex-direction:column;gap:1.2rem;}
+.contact-item-card{background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:1.4rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.25s;}
+.contact-item-card:hover{border-color:var(--green);box-shadow:var(--shadow-sm);}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.price-card{background:var(--white);border:1.5px solid var(--gray-border);border-radius:20px;padding:2.5rem 2rem;position:relative;transition:all 0.3s;}
+.price-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.price-card.featured{background:var(--black);border-color:var(--black);}
+.price-card.featured *{color:white;}
+.price-card .feat-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--green);color:white;padding:0.25rem 1rem;border-radius:0 0 8px 8px;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.price-name{font-family:'Sora',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:0.4rem;}
+.price-tag{color:var(--green);font-size:0.82rem;font-weight:600;margin-bottom:1.5rem;display:block;}
+.price-card.featured .price-tag{color:#4ecba5;}
+
+/* ══════════════════════════════════════════
+   FORMS — CRM-READY ARCHITECTURE
+   Supports: localStorage fallback,
+   webhook/n8n integration, Airtable, Sheets
+   ══════════════════════════════════════════ */
+
+/* Multi-step form */
+.multistep-wrapper{background:var(--white);border-radius:20px;padding:3rem;box-shadow:var(--shadow-lg);max-width:720px;margin:3rem auto 0;}
+.step-indicator{display:flex;gap:0;margin-bottom:2.5rem;}
+.step-dot{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.4rem;}
+.step-dot .dot{width:36px;height:36px;border-radius:50%;background:var(--gray-border);color:var(--gray-text);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;transition:all 0.3s;}
+.step-dot.active .dot{background:var(--green);color:white;box-shadow:0 0 0 4px rgba(15,139,109,0.2);}
+.step-dot.done .dot{background:var(--green-dark);color:white;}
+.step-dot label{font-size:0.7rem;color:var(--gray-text);font-weight:600;}
+.step-dot.active label{color:var(--green);}
+.step-connector{flex:1;height:2px;background:var(--gray-border);margin-top:17px;transition:background 0.4s;}
+.step-connector.done{background:var(--green);}
+.form-step{display:none;}
+.form-step.active{display:block;}
+.step-title{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:1.5rem;color:var(--black);}
+.form-nav{display:flex;justify-content:space-between;margin-top:2rem;gap:1rem;}
+
+/* Form elements */
+.form-card{background:var(--white);border-radius:20px;padding:2.5rem;box-shadow:var(--shadow-md);}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.form-group label{font-size:0.82rem;font-weight:600;color:var(--black);letter-spacing:0.02em;}
+.form-group label .req{color:var(--green);}
+.form-group input,.form-group select,.form-group textarea{
+  padding:0.78rem 1rem;border:1.5px solid var(--gray-border);border-radius:8px;
+  font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--black);outline:none;
+  transition:all 0.2s;background:var(--white);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(15,139,109,0.1);}
+.form-group input.error,.form-group select.error{border-color:#e53e3e;box-shadow:0 0 0 3px rgba(229,62,62,0.1);}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#b0b5be;}
+.form-group select{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235E6470' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;}
+.form-group select option{color:var(--black);}
+.form-group textarea{resize:vertical;min-height:110px;}
+
+/* Path chooser */
+.path-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.path-card{border:2px solid var(--gray-border);border-radius:12px;padding:1.5rem;text-align:center;cursor:pointer;transition:all 0.25s;}
+.path-card:hover,.path-card.selected{border-color:var(--green);background:var(--green-light);}
+.path-card .picon{font-size:2rem;margin-bottom:0.7rem;display:block;}
+.path-card h4{font-family:'Sora',sans-serif;font-weight:700;margin-bottom:0.3rem;font-size:0.95rem;}
+.path-card p{font-size:0.82rem;color:var(--gray-text);}
+.path-card.selected h4{color:var(--green-dark);}
+
+/* File upload */
+.file-upload-area{border:2px dashed var(--gray-border);border-radius:12px;padding:2rem;text-align:center;cursor:pointer;transition:all 0.25s;background:var(--gray-bg);}
+.file-upload-area:hover{border-color:var(--green);background:var(--green-light);}
+.file-upload-area .upload-icon{font-size:2rem;margin-bottom:0.5rem;display:block;}
+.file-upload-area p{color:var(--gray-text);font-size:0.88rem;line-height:1.5;}
+.file-upload-area strong{color:var(--green);}
+.file-upload-area input[type="file"]{display:none;}
+
+/* Checkbox */
+.checkbox-group{display:flex;align-items:flex-start;gap:0.7rem;cursor:pointer;margin-top:0.5rem;}
+.checkbox-group input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--green);flex-shrink:0;cursor:pointer;}
+.checkbox-group span{font-size:0.85rem;color:var(--gray-text);line-height:1.55;}
+.checkbox-group a{color:var(--green);}
+
+/* Submit button */
+.btn-submit{width:100%;padding:1rem;background:var(--green);color:white;border:none;border-radius:10px;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;}
+.btn-submit:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(15,139,109,0.3);}
+.btn-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+
+/* Step nav buttons */
+.btn-next{background:var(--green);color:white;border:none;padding:0.75rem 1.8rem;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.25s;display:flex;align-items:center;gap:0.4rem;}
+.btn-next:hover{background:var(--green-dark);}
+.btn-prev{background:var(--gray-bg);color:var(--gray-text);border:none;padding:0.75rem 1.8rem;border-radius:8px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.25s;}
+.btn-prev:hover{background:var(--gray-border);color:var(--black);}
+
+/* Form states */
+.form-loading,.form-success,.form-error{display:none;text-align:center;padding:2rem 0;}
+.form-loading.active,.form-success.active,.form-error.active{display:block;}
+.spinner{width:48px;height:48px;border:4px solid var(--green-light);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1.2rem;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.success-icon{font-size:4rem;margin-bottom:1rem;}
+.form-success h3,.form-error h3{font-family:'Sora',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;}
+.form-success p,.form-error p{color:var(--gray-text);}
+.form-error h3{color:#e53e3e;}
+.form-error .retry-btn{display:inline-block;margin-top:1rem;padding:0.6rem 1.5rem;background:var(--green);color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
+
+/* Field error messages */
+.field-error{color:#e53e3e;font-size:0.78rem;margin-top:0.25rem;display:none;}
+.field-error.show{display:block;}
+
+/* Progress bar */
+.progress-bar{height:4px;background:var(--gray-border);border-radius:2px;margin-bottom:2rem;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--green),#4ecba5);border-radius:2px;transition:width 0.4s ease;}
+
+/* Security note */
+.security-note{display:flex;align-items:center;gap:0.5rem;color:var(--gray-text);font-size:0.78rem;margin-top:1rem;}
+.security-note::before{content:'🔒';font-size:0.85rem;}
+
+/* ── TESTIMONIALS ── */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.testi-card{background:var(--white);border:1px solid var(--gray-border);border-radius:var(--radius);padding:2rem;transition:all 0.3s;}
+.testi-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+.stars{color:var(--gold);margin-bottom:0.8rem;font-size:0.9rem;}
+.quote-mark{font-family:'Sora',sans-serif;font-size:2.5rem;color:var(--green);line-height:1;margin-bottom:0.5rem;}
+.testi-text{color:var(--gray-text);font-size:0.9rem;line-height:1.7;margin-bottom:1.5rem;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:0.8rem;}
+.testi-av{width:40px;height:40px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:0.9rem;flex-shrink:0;}
+.testi-name{font-weight:700;font-size:0.88rem;color:var(--black);}
+.testi-info{font-size:0.78rem;color:var(--gray-text);}
+
+/* ── STATS BAND ── */
+.stats-band{background:var(--black);padding:3rem;}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;}
+.stat-item .stat-num{font-family:'Sora',sans-serif;font-size:2.5rem;font-weight:800;color:var(--gold);}
+.stat-item .stat-label{color:rgba(255,255,255,0.45);font-size:0.82rem;margin-top:0.3rem;}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:999;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(37,211,102,0.4);cursor:pointer;transition:all 0.3s;text-decoration:none;animation:float 3s ease-in-out infinite;}
+.wa-float:hover{transform:scale(1.1) !important;box-shadow:0 10px 30px rgba(37,211,102,0.5);animation:none;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.wa-float svg{width:28px;height:28px;fill:white;}
+
+/* ── FOOTER ── */
+footer{background:var(--black);padding:4rem 3rem 2rem;border-top:1px solid rgba(255,255,255,0.08);}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+.footer-logo{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:800;color:white;margin-bottom:1rem;display:block;}
+.footer-logo span{color:var(--green);}
+.footer-brand p{color:rgba(255,255,255,0.45);font-size:0.87rem;line-height:1.7;margin-bottom:1.2rem;max-width:260px;}
+.footer-disclaimer{color:rgba(255,255,255,0.28);font-size:0.75rem;line-height:1.6;border-top:1px solid rgba(255,255,255,0.06);padding-top:1rem;margin-top:1rem;}
+.footer-col h5{font-family:'Sora',sans-serif;font-size:0.85rem;font-weight:700;color:white;margin-bottom:1rem;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.footer-col ul a{color:rgba(255,255,255,0.45);font-size:0.85rem;text-decoration:none;transition:color 0.2s;cursor:pointer;}
+.footer-col ul a:hover{color:var(--green);}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-bottom p{color:rgba(255,255,255,0.3);font-size:0.82rem;}
+
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--black);border-radius:2px;transition:all 0.3s;}
+.mobile-menu{display:none;position:fixed;inset:0;background:white;z-index:999;padding:5rem 2rem 2rem;flex-direction:column;gap:1rem;overflow-y:auto;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:1.15rem;font-weight:600;color:var(--black);text-decoration:none;padding:0.7rem 0;border-bottom:1px solid var(--gray-border);cursor:pointer;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;}
+  .nav-links,.nav-actions{display:none;}
+  .hamburger{display:flex;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-split{height:200px;}
+  section{padding:3.5rem 1.5rem;}
+  .hero{padding:4rem 1.5rem 3rem;}
+  .cards-grid-3,.cards-grid-4{grid-template-columns:1fr 1fr;}
+  .steps{flex-direction:column;gap:1.5rem;}
+  .steps::before{display:none;}
+  .program-blocks,.feature-row,.cards-grid-2,.path-cards,.contact-grid{grid-template-columns:1fr;}
+  .trust-items,.pricing-grid{grid-template-columns:1fr 1fr;}
+  .sector-grid{grid-template-columns:repeat(3,1fr);}
+  .values-grid{grid-template-columns:repeat(3,1fr);}
+  .founder-card{grid-template-columns:1fr;text-align:center;}
+  .form-grid-2{grid-template-columns:1fr;}
+  .testi-grid{grid-template-columns:1fr;}
+  .doc-list{grid-template-columns:1fr;}
+  .page-hero,.about-hero,.contact-hero{padding:3rem 1.5rem;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .page-hero-grid{grid-template-columns:1fr;}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;}
+  .multistep-wrapper{padding:2rem 1.5rem;}
+}
+@media(max-width:480px){
+  .trust-items,.pricing-grid,.values-grid,.hero-stats{grid-template-columns:1fr;}
+  .cards-grid-3,.cards-grid-4{grid-template-columns:1fr;}
+  .sector-grid{grid-template-columns:repeat(2,1fr);}
+  .step-dot label{display:none;}
+}
+
+/* ══════════════════════════════════════════
+   MULTILINGUAL SYSTEM — FR / EN / AR
+   ══════════════════════════════════════════ */
+
+/* LTR only — FR / EN / RO all left-to-right */
+
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: var(--gray-bg);
+  border-radius: 8px;
+  padding: 0.2rem;
+  border: 1px solid var(--gray-border);
+}
+.lang-btn {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--gray-text);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.lang-btn:hover { background: white; color: var(--black); }
+.lang-btn.active { background: var(--white); color: var(--green); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.lang-btn .flag { font-size: 1rem; }
+
+/* Mobile lang switcher */
+.mobile-lang {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem 0 0.5rem;
+  border-top: 1px solid var(--gray-border);
+  margin-top: 0.5rem;
+}
+.mobile-lang .lang-btn {
+  flex: 1;
+  justify-content: center;
+  background: var(--gray-bg);
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-size: 0.85rem;
+}
+.mobile-lang .lang-btn.active { background: var(--green-light); color: var(--green-dark); }
+
+/* Transition on language change */
+[data-i18n], [data-i18n-placeholder] {
+  transition: opacity 0.15s ease;
+}
+.lang-changing [data-i18n], .lang-changing [data-i18n-placeholder] {
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav id="mainNav">
+  <span class="nav-logo" onclick="showPage('home')">W<span class="dot">A</span>M</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="nav-link" data-i18n="nav.home">Home</a></li>
+    <li><a onclick="showPage('work')" class="nav-link" data-i18n="nav.work">Work in Romania</a></li>
+    <li><a onclick="showPage('study')" class="nav-link" data-i18n="nav.study">Study in Europe</a></li>
+    <li><a onclick="showPage('companies')" class="nav-link" data-i18n="nav.companies">For Companies</a></li>
+    <li><a onclick="showPage('services')" class="nav-link" data-i18n="nav.services">Services</a></li>
+    <li><a onclick="showPage('about')" class="nav-link" data-i18n="nav.about">About</a></li>
+    <li><a onclick="showPage('contact')" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="btn btn-wa" href="https://wa.me/40748788643" target="_blank">
+      <svg style="width:15px;height:15px;fill:white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+      WhatsApp
+    </a>
+    <a class="btn btn-primary" onclick="showPage('apply')" data-i18n="nav.apply">Apply Now</a>
+  </div>
+  <div class="lang-switcher" id="langSwitcherNav">
+    <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr"><span class="flag">🇫🇷</span> FR</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en"><span class="flag">🇬🇧</span> EN</button>
+    <button class="lang-btn" onclick="setLang('ro')" id="btn-ro"><span class="flag">🇷🇴</span> RO</button>
+  </div>
+  <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');toggleMobile()" data-i18n="nav.home">Home</a>
+  <a onclick="showPage('work');toggleMobile()" data-i18n="nav.work">Work in Romania</a>
+  <a onclick="showPage('study');toggleMobile()" data-i18n="nav.study">Study in Europe</a>
+  <a onclick="showPage('companies');toggleMobile()" data-i18n="nav.companies">For Companies</a>
+  <a onclick="showPage('services');toggleMobile()" data-i18n="nav.services">Services</a>
+  <a onclick="showPage('about');toggleMobile()" data-i18n="nav.about">About</a>
+  <a onclick="showPage('contact');toggleMobile()" data-i18n="nav.contact">Contact</a>
+  <a onclick="showPage('apply');toggleMobile()" data-i18n="nav.apply_mobile" style="color:var(--green);border:2px solid var(--green);border-radius:8px;padding:0.8rem;text-align:center;margin-top:1rem;">Apply Now ✓</a>
+</div>
+
+  <div class="mobile-lang">
+    <button class="lang-btn active" onclick="setLang('fr');toggleMobile()" id="mbtn-fr"><span class="flag">🇫🇷</span> Français</button>
+    <button class="lang-btn" onclick="setLang('en');toggleMobile()" id="mbtn-en"><span class="flag">🇬🇧</span> English</button>
+    <button class="lang-btn" onclick="setLang('ro');toggleMobile()" id="mbtn-ro"><span class="flag">🇷🇴</span> Română</button>
+  </div>
+
+<!-- ══════════════════════════════════
+     PAGE: HOME
+     ══════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-grid container">
+      <div>
+        <div class="hero-badge" data-i18n="home.hero.badge">Legal Mobility · Bucharest-Based Support</div>
+        <h1 data-i18n="home.hero.title">Work, Study and<br><span>Build Your Future</span><br>in Europe</h1>
+        <p class="hero-sub" data-i18n="home.hero.sub">WAM – West Africa Mobility helps African workers and students access legal opportunities in Romania and Europe through a transparent, guided process.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" onclick="showPage('apply')" data-i18n="cta.apply_arrow">Apply Now →</a>
+          <a class="btn btn-ghost btn-lg" onclick="showPage('contact')" data-i18n="cta.book_consult">Book Free Consultation</a>
+        </div>
+        <div class="trust-badges">
+          <span class="trust-badge"><span class="tb-icon">✓</spandata-i18n="trust.legal"> Legal process</span>
+          <span class="trust-badge"><span class="tb-icon">✓</spandata-i18n="trust.personalized"> Personalized support</span>
+          <span class="trust-badge"><span class="tb-icon">✓</spandata-i18n="trust.romania_team"> Romania-based team</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-split">
+          <div class="hero-img vis-africa-work">
+            <span class="vis-icon-big">🌍</span>
+            <!-- REPLACE: Photo of African professional / worker in context -->
+            <div class="vis-replace-note">PHOTO</div>
+            <div class="vis-label">
+              <span class="vis-label-text">West Africa — Your Starting Point</span>
+              <span class="vis-label-badge">Origin</span>
+            </div>
+          </div>
+          <div class="hero-img vis-europe-city">
+            <span class="vis-icon-big">🏛️</span>
+            <!-- REPLACE: Photo of Bucharest / European city skyline -->
+            <div class="vis-replace-note">PHOTO</div>
+            <div class="vis-label">
+              <span class="vis-label-text">Romania · Europe — Your Destination</span>
+              <span class="vis-label-badge">Destination</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-arrow">→</div>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num">100%</span><div class="hero-stat-label">Legal process</div></div>
+          <div class="hero-stat"><span class="hero-stat-num">5</span><div class="hero-stat-label">Guided steps</div></div>
+          <div class="hero-stat"><span class="hero-stat-num">2</span><div class="hero-stat-label">Programs</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="stats.legal">Legal & transparent process</div></div>
+      <div class="stat-item"><div class="stat-num">5</div><div class="stat-label" data-i18n="stats.steps">Structured steps</div></div>
+      <div class="stat-item"><div class="stat-num">12+</div><div class="stat-label" data-i18n="stats.destinations">European destinations</div></div>
+      <div class="stat-item"><div class="stat-num">24h</div><div class="stat-label" data-i18n="stats.response">Response time</div></div>
+    </div>
+  </div>
+
+  <!-- TRUST CARDS -->
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="section-center">
+        <p class="section-label" data-i18n="home.trust.label">A structured pathway</p>
+        <h2 class="section-title" data-i18n="home.trust.title">Transparent access to real European opportunities</h2>
+        <p class="section-sub" data-i18n="home.trust.sub">Every step is guided, legal and built around your project.</p>
+      </div>
+      <div class="trust-items">
+        <div class="trust-item-card"><div class="icon">💼</div><h4data-i18n="home.trust.work.title">Work Recruitment</h4><pdata-i18n="home.trust.work.desc">Access real job opportunities in Romania with full legal guidance</p></div>
+        <div class="trust-item-card"><div class="icon">🎓</div><h4data-i18n="home.trust.study.title">Student Admission</h4><pdata-i18n="home.trust.study.desc">University application support from orientation to enrollment</p></div>
+        <div class="trust-item-card"><div class="icon">🏠</div><h4data-i18n="home.trust.arrival.title">Arrival Assistance</h4><pdata-i18n="home.trust.arrival.desc">Guidance for your first steps in Romania and Europe</p></div>
+        <div class="trust-item-card"><div class="icon">🤝</div><h4data-i18n="home.trust.company.title">Company Partnerships</h4><pdata-i18n="home.trust.company.desc">Direct connection with Romanian employers seeking talent</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container">
+      <div class="section-center">
+        <p class="section-label" data-i18n="home.process.label">How it works</p>
+        <h2 class="section-title" data-i18n="home.process.title">The WAM Process — 5 Clear Steps</h2>
+        <p class="section-sub" data-i18n="home.process.sub">Clear steps, real opportunities. From your application to your arrival in Europe.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">01</div><h4data-i18n="home.step1.title">Submit your application</h4><pdata-i18n="home.step1.desc">Fill out your profile and tell us your goals</p></div>
+        <div class="step-connector"></div>
+        <div class="step"><div class="step-num">02</div><h4data-i18n="home.step2.title">Profile review</h4><pdata-i18n="home.step2.desc">Our team analyzes your background and eligibility</p></div>
+        <div class="step-connector"></div>
+        <div class="step"><div class="step-num">03</div><h4data-i18n="home.step3.title">Document guidance</h4><pdata-i18n="home.step3.desc">We guide you through every required document</p></div>
+        <div class="step-connector"></div>
+        <div class="step"><div class="step-num">04</div><h4data-i18n="home.step4.title">Opportunity match</h4><pdata-i18n="home.step4.desc">We connect you with the right employer or university</p></div>
+        <div class="step-connector"></div>
+        <div class="step"><div class="step-num">05</div><h4data-i18n="home.step5.title">Arrival support</h4><pdata-i18n="home.step5.desc">We stay with you when you land in Europe</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS VISUAL -->
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="program-blocks">
+        <div class="program-block program-work">
+          <div>
+            <span class="program-tag">💼 For workers</span>
+            <h3data-i18n="work.title">Work in Romania</h3>
+            <p>Jobs for motivated African workers in construction, logistics, hospitality and production. Legal process, guided from start to finish.</p>
+            <a class="btn btn-primary" onclick="showPage('work')" data-i18n="cta.explore_work">Explore Work Opportunities →</a>
+          </div>
+          <span class="program-icon">🏗️</span>
+        </div>
+        <div class="program-block program-study">
+          <div>
+            <span class="program-tag">🎓 For students</span>
+            <h3data-i18n="study.title">Study in Europe</h3>
+            <p>Support for university admission, study planning, visa preparation and relocation to build your academic pathway in Europe.</p>
+            <a class="btn btn-gold" onclick="showPage('study')" data-i18n="cta.explore_study">Explore Study Opportunities →</a>
+          </div>
+          <span class="program-icon">📚</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL FEATURE: Image + Text -->
+  <section>
+    <div class="container">
+      <div class="feature-row">
+        <div>
+          <p class="section-label" data-i18n="home.why.label">Why WAM</p>
+          <h2 class="section-title" style="font-size:clamp(1.6rem,2.5vw,2.1rem);" data-i18n="home.why.title">A team that understands<br>your journey</h2>
+          <p style="color:var(--gray-text);line-height:1.8;margin-bottom:1.5rem;">WAM was built by people who know what it means to navigate international mobility. We are based in Bucharest and work directly with African communities to provide real, grounded support.</p>
+          <ul class="check-list">
+            <li>Structured legal process — no improvisation</li>
+            <li>Transparent communication from day one</li>
+            <li>Romania-based team with local knowledge</li>
+            <li>Personalized support for every profile</li>
+            <li>Operated by SMARTGROUP GLOBAL SRL, registered in Romania</li>
+          </ul>
+          <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <a class="btn btn-primary" onclick="showPage('about')" data-i18n="cta.about_wam">About WAM</a>
+            <a class="btn btn-outline" onclick="showPage('contact')" data-i18n="cta.contact_us">Contact Us</a>
+          </div>
+        </div>
+        <div class="visual-block vis-meeting" style="min-height:380px;">
+          <!-- REPLACE: Photo of WAM team / founder in office / professional meeting -->
+          <span class="vis-icon-big" style="font-size:5rem;">🤝</span>
+          <div class="vis-replace-note">TEAM PHOTO</div>
+          <div class="vis-label">
+            <span class="vis-label-text">WAM Team — Bucharest, Romania</span>
+            <span class="vis-label-badge">Your Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="section-center">
+        <p class="section-label">From our community</p>
+        <h2 class="section-title">What people say about WAM</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="quote-mark">"</div>
+          <p class="testi-text">WAM made the entire process clear and manageable. I knew exactly what documents I needed and had real support every step of the way to Romania.</p>
+          <div class="testi-author"><div class="testi-av">MK</div><div><div class="testi-name">Moussa Keïta</div><div class="testi-info">Guinea → Romania · Construction</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="quote-mark">"</div>
+          <p class="testi-text">I was lost with the university application process. The WAM team guided me from choosing the right program to getting my student visa. Professional and human.</p>
+          <div class="testi-author"><div class="testi-av">AF</div><div><div class="testi-name">Aminata Fofana</div><div class="testi-info">Senegal → Bucharest · Business Studies</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <div class="quote-mark">"</div>
+          <p class="testi-text">The transparency of WAM is what sets them apart. No hidden fees, no false promises. Just a clear, legal process that actually works.</p>
+          <div class="testi-author"><div class="testi-av">IB</div><div><div class="testi-name">Ibrahim Balde</div><div class="testi-info">Ivory Coast → Romania · Logistics</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="cta-section">
+    <div class="container">
+      <h2data-i18n="home.cta.title">Ready to start your Europe journey?</h2>
+      <pdata-i18n="home.cta.sub">Whether you are applying for work or studies, WAM helps you move with clarity and confidence.</p>
+      <div class="cta-actions">
+        <a class="btn btn-lg" style="background:white;color:var(--green-dark);font-weight:700;" onclick="showPage('apply')" data-i18n="cta.apply_free">Apply Now — It's Free</a>
+        <a class="btn btn-ghost btn-lg" href="https://wa.me/40748788643" target="_blank" data-i18n="cta.whatsapp_us">WhatsApp Us</a>
+      </div>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:1.5rem;" data-i18n="footer.legal_short">Operated by SMARTGROUP GLOBAL SRL · Bucharest, Romania</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: WORK
+     ══════════════════════════════════ -->
+<div class="page" id="page-work">
+  <div class="page-hero">
+    <div class="page-hero-grid container">
+      <div>
+        <div class="hero-badge" data-i18n="work.hero.badge">💼 Work Program</div>
+        <h1 data-i18n="work.hero.title">Work in Romania with a<br><span>legal and guided</span> process</h1>
+        <p data-i18n="work.hero.sub">We help African candidates access real job opportunities in Romania and prepare for each step of the mobility process.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" onclick="showPage('apply')" data-i18n="cta.apply_work">Apply for Work</a>
+          <a class="btn btn-ghost btn-lg" href="https://wa.me/40748788643" target="_blank" data-i18n="cta.speak_wa">Speak on WhatsApp</a>
+        </div>
+        <div class="trust-badges" style="margin-top:1.5rem;">
+          <span class="trust-badge"><span class="tb-icon">✓</span> Legal work permit process</span>
+          <span class="trust-badge"><span class="tb-icon">✓</span> Real employer connections</span>
+        </div>
+      </div>
+      <div class="visual-block vis-africa-work" style="min-height:300px;border-radius:16px;">
+        <!-- REPLACE: Photo of African worker in professional context (construction, logistics, hospitality) -->
+        <span class="vis-icon-big">🦺</span>
+        <div class="vis-replace-note">PHOTO</div>
+        <div class="vis-label">
+          <span class="vis-label-text">Professional opportunity in Romania</span>
+          <span class="vis-label-badge">Work</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <p class="section-label" data-i18n="work.sectors.label">Available sectors</p>
+      <h2 class="section-title" data-i18n="work.sectors.title">Job sectors we cover</h2>
+      <div class="sector-grid">
+        <div class="sector-card"><span class="sector-icon">🏗️</span><span>Construction</span></div>
+        <div class="sector-card"><span class="sector-icon">🚛</span><span>Logistics</span></div>
+        <div class="sector-card"><span class="sector-icon">🏭</span><span>Manufacturing</span></div>
+        <div class="sector-card"><span class="sector-icon">🏨</span><span>Hospitality</span></div>
+        <div class="sector-card"><span class="sector-icon">🌾</span><span>Agriculture</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="feature-row">
+        <div>
+          <p class="section-label">Our role</p>
+          <h2 class="section-title" style="font-size:clamp(1.6rem,2.5vw,2.1rem);" data-i18n="work.our_role.title">What WAM does for you</h2>
+          <p style="color:var(--gray-text);margin-bottom:1rem;" data-i18n="work.our_role.text">We coordinate the full process so you can focus on your goal — working legally in Romania.</p>
+          <ul class="check-list">
+            <li>Profile screening and eligibility assessment</li>
+            <li>Document guidance and preparation support</li>
+            <li>Employer matching and coordination</li>
+            <li>Work process support throughout</li>
+            <li>Arrival orientation once you land</li>
+          </ul>
+          <div style="margin-top:2rem;"><a class="btn btn-primary btn-lg" onclick="showPage('apply')" data-i18n="cta.start_work">Start Work Application →</a></div>
+        </div>
+        <div class="visual-block vis-europe-city" style="min-height:340px;border-radius:16px;">
+          <!-- REPLACE: Photo of Bucharest work environment / industrial zone / logistics hub -->
+          <span class="vis-icon-big">🏙️</span>
+          <div class="vis-replace-note">PHOTO</div>
+          <div class="vis-label">
+            <span class="vis-label-text">Work opportunities across Romania</span>
+            <span class="vis-label-badge">Romania</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label">Documents</p>
+      <h2 class="section-title" data-i18n="work.docs.title">Documents often required</h2>
+      <div class="doc-list">
+        <div class="doc-item">Valid passport</div>
+        <div class="doc-item">Updated CV (French or English)</div>
+        <div class="doc-item">Work experience documents</div>
+        <div class="doc-item">Diplomas if applicable</div>
+        <div class="doc-item">National identity card</div>
+        <div class="doc-item">Recent passport photos</div>
+      </div>
+      <div class="notice-box">
+        <span class="notice-icon">ℹ️</span>
+        <p><strong>Important:</strong> WAM – West Africa Mobility (operated by SMARTGROUP GLOBAL SRL) provides guidance and coordination. Final hiring and work permit decisions remain subject to employer and legal authority approval. We are committed to full transparency.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section">
+    <div class="container">
+      <h2data-i18n="work.cta.title">Ready to work in Romania?</h2>
+      <pdata-i18n="work.cta.sub">Submit your profile today. Our team reviews it within 48 hours.</p>
+      <div class="cta-actions">
+        <a class="btn btn-lg" style="background:white;color:var(--green-dark);font-weight:700;" onclick="showPage('apply')">Start Work Application</a>
+        <a class="btn btn-ghost btn-lg" href="https://wa.me/40748788643" target="_blank">Ask on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: STUDY
+     ══════════════════════════════════ -->
+<div class="page" id="page-study">
+  <div class="page-hero" style="background:linear-gradient(135deg,#0a1020 0%,#152030 100%);">
+    <div class="page-hero-grid container">
+      <div>
+        <div class="hero-badge" data-i18n="study.hero.badge">🎓 Study Program</div>
+        <h1 data-i18n="study.hero.title">Study in Europe with<br><span>structured admission</span> support</h1>
+        <p data-i18n="study.hero.sub">From university orientation to application and relocation, WAM helps students build a serious academic pathway in Europe.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold btn-lg" onclick="showPage('apply')" data-i18n="cta.apply_study">Apply for Studies</a>
+          <a class="btn btn-ghost btn-lg" onclick="showPage('contact')" data-i18n="cta.book_consult2">Book Consultation</a>
+        </div>
+      </div>
+      <div class="visual-block vis-student" style="min-height:280px;border-radius:16px;">
+        <!-- REPLACE: Photo of African student in academic setting / campus / library -->
+        <span class="vis-icon-big">📚</span>
+        <div class="vis-replace-note">PHOTO</div>
+        <div class="vis-label">
+          <span class="vis-label-text">Academic pathway in Europe</span>
+          <span class="vis-label-badge">Studies</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <p class="section-label" data-i18n="study.fields.label">Academic fields</p>
+      <h2 class="section-title" data-i18n="study.fields.title">Programs & Fields of study</h2>
+      <div class="cards-grid-4" style="margin-top:2rem;">
+        <div class="card"><div class="card-icon">💼</div><h3>Business</h3><p>Management, finance, marketing and international trade.</p></div>
+        <div class="card"><div class="card-icon">💻</div><h3>IT & Tech</h3><p>Computer science, software engineering and digital technology.</p></div>
+        <div class="card"><div class="card-icon">⚙️</div><h3>Engineering</h3><p>Civil, mechanical, electrical and industrial engineering.</p></div>
+        <div class="card"><div class="card-icon">🏥</div><h3>Health Fields</h3><p>Nursing, pharmacy and health management programs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="feature-row reverse">
+        <div>
+          <p class="section-label" data-i18n="study.support.label">Full support</p>
+          <h2 class="section-title" style="font-size:clamp(1.6rem,2.5vw,2.1rem);" data-i18n="study.support.title">Academic support from A to Z</h2>
+          <ul class="check-list" style="margin-top:1rem;">
+            <li>Academic orientation and program selection</li>
+            <li>University shortlisting and application</li>
+            <li>Full file preparation and review</li>
+            <li>Visa preparation assistance</li>
+            <li>Arrival and housing guidance</li>
+          </ul>
+          <div style="margin-top:2rem;"><a class="btn btn-gold btn-lg" onclick="showPage('apply')" data-i18n="cta.begin_study">Begin Student Process →</a></div>
+        </div>
+        <div class="visual-block vis-student" style="min-height:340px;border-radius:16px;">
+          <!-- REPLACE: Photo of student in European campus / university building -->
+          <span class="vis-icon-big">🎓</span>
+          <div class="vis-replace-note">PHOTO</div>
+          <div class="vis-label">
+            <span class="vis-label-text">European universities & institutions</span>
+            <span class="vis-label-badge">Campus</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-section" style="background:linear-gradient(135deg,#0a1020,#1a2a40);">
+    <div class="container">
+      <h2data-i18n="study.cta.title">Build your academic future in Europe</h2>
+      <pdata-i18n="study.cta.sub">Start your application today and let WAM guide you to a European university.</p>
+      <div class="cta-actions">
+        <a class="btn btn-lg" style="background:var(--gold);color:var(--black);font-weight:700;" onclick="showPage('apply')">Begin Student Process</a>
+        <a class="btn btn-ghost btn-lg" onclick="showPage('contact')" data-i18n="cta.book_consult2">Book Consultation</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: SERVICES
+     ══════════════════════════════════ -->
+<div class="page" id="page-services">
+  <div class="page-hero"><div class="container">
+    <p class="section-label" data-i18n="services.label">What we offer</p>
+    <h1><span data-i18n="services.title">Clear services.</span><br><span data-i18n="services.title.part2">Transparent process.</span></h1>
+    <p>Three core offerings designed to take you from application to arrival.</p>
+  </div></div>
+
+  <section>
+    <div class="container">
+      <div class="cards-grid-3">
+        <div class="card">
+          <div class="card-icon">💼</div><h3>WAM Work</h3>
+          <p>Complete support for African workers seeking employment in Romania and Europe.</p>
+          <ul class="service-list">
+            <li>Candidate profile review</li><li>Full process guidance</li>
+            <li>Employer matching support</li><li>Document coordination</li><li>Arrival assistance</li>
+          </ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-primary" onclick="showPage('apply')" data-i18n="cta.apply_work">Apply for Work</a></div>
+        </div>
+        <div class="card" style="border-color:var(--green);">
+          <div class="card-icon">🎓</div><h3>WAM Study</h3>
+          <p>Academic support from university orientation to enrollment and relocation.</p>
+          <ul class="service-list">
+            <li>Program orientation</li><li>Application file support</li>
+            <li>University process guidance</li><li>Visa preparation</li><li>Arrival support</li>
+          </ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-gold" onclick="showPage('apply')" data-i18n="cta.apply_study">Apply for Studies</a></div>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏠</div><h3>WAM Arrival</h3>
+          <p>Practical support for your first days in Romania.</p>
+          <ul class="service-list">
+            <li>Housing orientation</li><li>Bank account guidance</li>
+            <li>Insurance orientation</li><li>City onboarding support</li><li>Administrative assistance</li>
+          </ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-outline" onclick="showPage('contact')">Request Arrival Support</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="section-center">
+        <p class="section-label" data-i18n="services.pricing.label">Pricing</p>
+        <h2 class="section-title" data-i18n="services.pricing.title">Transparent pricing</h2>
+        <p class="section-sub">Contact us for a personalized quote based on your profile and needs.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <p class="price-name">WAM Work</p><span class="price-tag">For workers</span>
+          <p style="color:var(--gray-text);font-size:0.9rem;margin-bottom:1.5rem;">Starting from a transparent, fixed fee. Personalized quote based on your profile.</p>
+          <ul class="service-list"><li>Profile review</li><li>Document guidance</li><li>Employer coordination</li></ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-primary" style="display:block;text-align:center;" onclick="showPage('apply')" data-i18n="cta.apply_work">Apply for Work</a></div>
+        </div>
+        <div class="price-card featured">
+          <div class="feat-badge">Most chosen</div>
+          <p class="price-name">WAM Study</p><span class="price-tag">For students</span>
+          <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;margin-bottom:1.5rem;">Tailored pricing depending on program and destination. Free initial consultation.</p>
+          <ul class="service-list" style="color:rgba(255,255,255,0.7);">
+            <li style="color:rgba(255,255,255,0.7);">Full academic guidance</li>
+            <li style="color:rgba(255,255,255,0.7);">Visa support</li>
+            <li style="color:rgba(255,255,255,0.7);">Arrival assistance</li>
+          </ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-gold" style="display:block;text-align:center;" onclick="showPage('apply')" data-i18n="cta.apply_study">Apply for Studies</a></div>
+        </div>
+        <div class="price-card">
+          <p class="price-name">WAM Arrival</p><span class="price-tag">Add-on service</span>
+          <p style="color:var(--gray-text);font-size:0.9rem;margin-bottom:1.5rem;">Available standalone or bundled with Work/Study packages.</p>
+          <ul class="service-list"><li>Housing guidance</li><li>City orientation</li><li>Admin support</li></ul>
+          <div style="margin-top:1.5rem;"><a class="btn btn-outline" style="display:block;text-align:center;" onclick="showPage('contact')">Request Info</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: FOR COMPANIES
+     ══════════════════════════════════ -->
+<div class="page" id="page-companies">
+  <div class="page-hero" style="background:linear-gradient(135deg,#0a1828,#152538);">
+    <div class="page-hero-grid container">
+      <div>
+        <div class="hero-badge" data-i18n="companies.hero.badge">🏢 For Employers</div>
+        <h1 data-i18n="companies.hero.title">Recruit reliable<br><span>African talent</span> for your<br>Romanian business</h1>
+        <p data-i18n="companies.hero.sub">WAM supports Romanian employers by sourcing motivated African candidates and coordinating structured international mobility support.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary btn-lg" onclick="document.getElementById('company-form-section').scrollIntoView({behavior:'smooth'})" data-i18n="cta.request_recruit">Request Recruitment</a>
+          <a class="btn btn-ghost btn-lg" href="https://wa.me/40748788643" target="_blank">Call / WhatsApp</a>
+        </div>
+      </div>
+      <div class="visual-block vis-meeting" style="min-height:280px;border-radius:16px;">
+        <!-- REPLACE: Photo of business meeting / handshake / professional environment -->
+        <span class="vis-icon-big">🏢</span>
+        <div class="vis-replace-note">PHOTO</div>
+        <div class="vis-label">
+          <span class="vis-label-text">Romanian business partnerships</span>
+          <span class="vis-label-badge">B2B</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="cards-grid-3">
+        <div class="card card-green"><div class="card-icon">🔍</div><h3>Candidate Sourcing</h3><p>We identify motivated African workers from our network across West Africa.</p></div>
+        <div class="card"><div class="card-icon">📋</div><h3>Pre-Screening</h3><p>Profiles reviewed for eligibility, skills and motivation before presentation.</p></div>
+        <div class="card"><div class="card-icon">🌍</div><h3>Mobility Coordination</h3><p>We handle the coordination between Africa and Romania for smooth processes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <p class="section-label" data-i18n="companies.sectors.label">Sectors we serve</p>
+      <h2 class="section-title" data-i18n="companies.sectors.title">Industries we recruit for</h2>
+      <div class="sector-grid">
+        <div class="sector-card"><span class="sector-icon">🏗️</span><span>Construction</span></div>
+        <div class="sector-card"><span class="sector-icon">🚛</span><span>Logistics</span></div>
+        <div class="sector-card"><span class="sector-icon">🏨</span><span>Hospitality</span></div>
+        <div class="sector-card"><span class="sector-icon">🏭</span><span>Manufacturing</span></div>
+        <div class="sector-card"><span class="sector-icon">⚙️</span><span>Services</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPANY FORM — CRM READY -->
+  <!-- API ENDPOINT: POST /api/company -->
+  <!-- INTEGRATIONS: n8n webhook, Airtable, Google Sheets -->
+  <section id="company-form-section">
+    <div class="container">
+      <div class="section-center">
+        <p class="section-label" data-i18n="companies.form.label">Get started</p>
+        <h2 class="section-title" data-i18n="companies.form.title">Submit a recruitment request</h2>
+        <p class="section-sub" data-i18n="companies.form.sub">Our team will contact you within 24 hours.</p>
+      </div>
+      <div class="form-card" style="max-width:680px;margin:3rem auto 0;" id="companyFormWrap">
+        <div class="form-loading" id="companyLoading">
+          <div class="spinner"></div>
+          <p style="color:var(--gray-text);" data-i18n="loading.submitting">Sending your request…</p>
+        </div>
+        <div class="form-success" id="companySuccess">
+          <div class="success-icon">✅</div>
+          <h3 data-i18n="success.company.title">Request received!</h3>
+          <p>Our team will contact you within 24 hours.<br>Email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cfaca0a1bbaeacbb8fb8aabcbbaea9bda6acaea2a0ada6a3a6bbb6e1aca0a2">[email&#160;protected]</a></strong></p>
+        </div>
+        <div class="form-error" id="companyError">
+          <div style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+          <h3 data-i18n="error.title">Something went wrong</h3>
+          <p>Please try again or contact us directly.</p>
+          <button class="retry-btn" onclick="resetForm('company')" data-i18n="error.retry">Try again</button>
+        </div>
+        <div id="companyFormBody">
+          <div class="form-grid-2">
+            <div class="form-group"><label><span data-i18n="form.company_name">Company Name</span> <span class="req">*</span></label><input type="text" id="co_name" placeholder="Your company name" data-i18n-placeholder="form.company_name"></div>
+            <div class="form-group"><label><span data-i18n="form.contact_person">Contact Person</span> <span class="req">*</span></label><input type="text" id="co_contact" placeholder="Full name" data-i18n-placeholder="form.contact_person"></div>
+            <div class="form-group"><label><span data-i18n="form.email">Email</span> <span class="req">*</span></label><input type="email" id="co_email" placeholder="contact@company.ro" data-i18n-placeholder="form.email"></div>
+            <div class="form-group"><label><span data-i18n="form.phone">Phone / WhatsApp</span> <span class="req">*</span></label><input type="tel" id="co_phone" placeholder="+40 XXX XXX XXX"></div>
+            <div class="form-group"><label><span data-i18n="form.sector">Sector</span> <span class="req">*</span></label>
+              <select id="co_sector"><option value="">Select sector…</option><option>Construction</option><option>Logistics</option><option>Hospitality</option><option>Manufacturing</option><option>Agriculture</option><option>IT / Services</option><option>Other</option></select>
+            </div>
+            <div class="form-group"><label data-i18n="form.workers_needed">Workers needed</label><input type="text" id="co_workers" placeholder="e.g. 5–10 workers" data-i18n-placeholder="form.workers_needed"></div>
+            <div class="form-group"><label data-i18n="form.job_type">Job type</label><input type="text" id="co_jobtype" placeholder="e.g. Driver, Welder, Waiter…" data-i18n-placeholder="form.job_type"></div>
+            <div class="form-group"><label data-i18n="form.city_location">City / Location</label><input type="text" id="co_city" placeholder="e.g. Bucharest, Cluj…" data-i18n-placeholder="form.city_location"></div>
+          </div>
+          <div class="form-group"><label data-i18n="form.message">Message</label><textarea id="co_message" placeholder="Describe your needs, timeline and specific requirements…"></textarea></div>
+          <div class="form-group">
+            <label class="checkbox-group">
+              <input type="checkbox" id="co_consent">
+              <span>I agree to WAM's <a href="#">privacy policy</a> and consent to being contacted regarding this request.</span>
+            </label>
+          </div>
+          <button class="btn-submit" onclick="submitCompanyForm()" data-i18n="cta.submit_company">Submit Recruitment Request →</button>
+          <p class="security-note" data-i18n="trust.legal"> Your information is handled professionally and securely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: ABOUT
+     ══════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-hero">
+    <div class="container" style="max-width:1200px;">
+      <div class="feature-row" style="gap:5rem;">
+        <div>
+          <p style="color:var(--green);font-size:0.8rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.7rem;" data-i18n="about.label">Who we are</p>
+          <h1><span data-i18n="about.title">About WAM</span><br><span style="color:#4ecba5">West Africa Mobility</span></h1>
+          <p style="color:rgba(255,255,255,0.65);font-size:1.05rem;line-height:1.75;margin-top:1rem;max-width:520px;" data-i18n="about.mission.text">WAM was created to build structured bridges between African talent and European opportunities through serious, transparent and practical mobility support.</p>
+          <div style="margin-top:1.5rem;display:inline-flex;align-items:center;gap:0.6rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:0.7rem 1.1rem;">
+            <span>🏢</span>
+            <span style="color:rgba(255,255,255,0.6);font-size:0.82rem;">Operated by <strong style="color:rgba(255,255,255,0.85);">SMARTGROUP GLOBAL SRL</strong> — Registered in Romania</span>
+          </div>
+        </div>
+        <div class="visual-block" style="background:linear-gradient(145deg,#1a2a1a,#2a3a2a);min-height:320px;border-radius:16px;">
+          <!-- REPLACE: Photo of Norbert Loua or WAM team / office in Bucharest -->
+          <span class="vis-icon-big" style="font-size:5rem;">👤</span>
+          <div class="vis-replace-note">FOUNDER PHOTO</div>
+          <div class="vis-label">
+            <span class="vis-label-text">Norbert Loua — Founder, Bucharest</span>
+            <span class="vis-label-badge">WAM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="cards-grid-2">
+        <div class="card"><div class="card-icon">🎯</div><h3data-i18n="about.mission.title">Our Mission</h3><p style="font-size:1rem;line-height:1.75;">To connect African workers and students with real opportunities in Europe through legal, guided and human-centered processes — built on trust and transparency.</p></div>
+        <div class="card"><div class="card-icon">🌟</div><h3data-i18n="about.vision.title">Our Vision</h3><p style="font-size:1rem;line-height:1.75;">To become a trusted mobility platform between West Africa and Europe — recognized for its integrity, results, and genuine impact on the people it serves.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <p class="section-label" data-i18n="about.values.label">What we stand for</p>
+      <h2 class="section-title" data-i18n="about.values.title">Our Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="vicon">🔍</div><h4>Transparency</h4></div>
+        <div class="value-card"><div class="vicon">💼</div><h4>Professionalism</h4></div>
+        <div class="value-card"><div class="vicon">🤝</div><h4>Trust</h4></div>
+        <div class="value-card"><div class="vicon">🧭</div><h4>Guidance</h4></div>
+        <div class="value-card"><div class="vicon">🚀</div><h4>Opportunity</h4></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <p class="section-label" data-i18n="about.founder.label">The founder</p>
+      <h2 class="section-title" data-i18n="about.founder.title">Built by someone who understands the journey</h2>
+      <div class="founder-card">
+        <div class="founder-avatar">NL</div>
+        <div>
+          <h3>Norbert Loua</h3>
+          <div class="founder-title">Founder & Director — WAM – West Africa Mobility / SMARTGROUP GLOBAL SRL</div>
+          <p>Founded by Norbert Loua, based in Bucharest, Romania, with a mission to build a reliable and professional mobility ecosystem for West Africa. Having experienced the challenges of international mobility firsthand, Norbert created WAM to give African candidates the serious, structured support they deserve — from the first application to arrival in Europe.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: CONTACT
+     ══════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-hero">
+    <div class="container">
+      <p style="color:rgba(255,255,255,0.6);font-size:0.8rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.7rem;" data-i18n="contact.label">Reach out</p>
+      <h1 data-i18n="contact.hero.title">Let's talk about<br>your project</h1>
+      <p style="color:rgba(255,255,255,0.75);font-size:1.05rem;margin-top:0.5rem;" data-i18n="contact.hero.sub">First consultation is always free. We respond within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM — CRM READY -->
+  <!-- API ENDPOINT: POST /api/contact -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-items">
+          <div class="contact-item-card"><div class="ci-icon">📍</div><div><div class="ci-label" data-i18n="ci.address_label">Registered Address</div><div class="ci-value" style="font-size:0.88rem;line-height:1.6;">Bld. G-ral. Gheorghe Magheru nr. 31,<br>et. 5, office no. 2, Sector 1,<br>Bucharest, Romania</div></div></div>
+          <div class="contact-item-card"><div class="ci-icon">✉️</div><div><div class="ci-label" data-i18n="ci.email_label">Email</div><div class="ci-value"><a href="/cdn-cgi/l/email-protection#d7b4b8b9a3b6b4a397a0b2a4a3b6b1a5beb4b6bab8b5bebbbea3aef9b4b8ba" style="color:var(--green);text-decoration:none;"><span class="__cf_email__" data-cfemail="3f5c50514b5e5c4b7f485a4c4b5e594d565c5e52505d5653564b46115c5052">[email&#160;protected]</span></a></div></div></div>
+          <div class="contact-item-card"><div class="ci-icon">📱</div><div><div class="ci-label" data-i18n="ci.phone_label">Phone / WhatsApp</div><div class="ci-value"><a href="https://wa.me/40748788643" style="color:var(--green);text-decoration:none;">+40 748 788 643</a></div></div></div>
+          <div class="contact-item-card"><div class="ci-icon">🏢</div><div><div class="ci-label" data-i18n="ci.legal_label">Legal Entity</div><div class="ci-value">SMARTGROUP GLOBAL SRL</div></div></div>
+          <div class="contact-item-card"><div class="ci-icon">⏰</div><div><div class="ci-label" data-i18n="ci.hours_label">Business Hours</div><div class="ci-value">Mon–Fri · 9:00–18:00 (Bucharest)</div></div></div>
+        </div>
+        <div>
+          <!-- API ENDPOINT: POST /api/contact -->
+          <div class="form-card" id="contactFormWrap">
+            <div class="form-loading" id="contactLoading"><div class="spinner"></div><p style="color:var(--gray-text);" data-i18n="loading.submitting">Sending…</p></div>
+            <div class="form-success" id="contactSuccess">
+              <div class="success-icon">✅</div>
+              <h3 data-i18n="success.contact.title">Message sent!</h3>
+              <p>We'll get back to you within 24 hours at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7c1f1312081d1f083c0b190f081d1a0e151f1d11131e1510150805521f1311">[email&#160;protected]</a></strong></p>
+            </div>
+            <div class="form-error" id="contactError">
+              <div style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+              <h3 data-i18n="error.title">Couldn't send your message</h3>
+              <p>Please email us directly at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="482b27263c292b3c083f2d3b3c292e3a212b2925272a2124213c31662b2725">[email&#160;protected]</a></strong></p>
+              <button class="retry-btn" onclick="resetForm('contact')" data-i18n="error.retry">Try again</button>
+            </div>
+            <div id="contactFormBody">
+              <h3 style="font-family:'Sora',sans-serif;font-weight:700;margin-bottom:1.5rem;" data-i18n="contact.form.title">Send us a message</h3>
+              <div class="form-grid-2">
+                <div class="form-group"><label><span data-i18n="form.name">Name</span> <span class="req">*</span></label><input type="text" id="ct_name" placeholder="Your full name" data-i18n-placeholder="form.full_name"></div>
+                <div class="form-group"><label>Email <span class="req">*</span></label><input type="email" id="ct_email" placeholder="you@email.com" data-i18n-placeholder="form.email"></div>
+                <div class="form-group"><label data-i18n="form.phone">Phone / WhatsApp</label><input type="tel" id="ct_phone" placeholder="+XXX XXXX XXXX" data-i18n-placeholder="form.whatsapp"></div>
+                <div class="form-group"><label data-i18n="form.subject">Subject</label>
+                  <select id="ct_subject"><option value="Work in Romania">Work in Romania</option><option value="Study in Europe">Study in Europe</option><option value="Company recruitment">Company recruitment</option><option value="General question">General question</option></select>
+                </div>
+              </div>
+              <div class="form-group"><label><span data-i18n="form.message">Message</span> <span class="req">*</span></label><textarea id="ct_message" placeholder="Tell us about your situation…"></textarea></div>
+              <div class="form-group"><label class="checkbox-group"><input type="checkbox" id="ct_consent"><span data-i18n="form.consent">I agree to WAM's <a href="#">privacy policy</a>.</span></label></div>
+              <button class="btn-submit" onclick="submitContactForm()" data-i18n="cta.send_message">Send Message →</button>
+              <p style="text-align:center;margin-top:1rem;"><a href="https://wa.me/40748788643" target="_blank" style="color:#25D366;font-weight:700;">or message us on WhatsApp (+40 748 788 643)</a></p>
+              <p class="security-note">Your information is handled securely and professionally.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════════════════════════
+     PAGE: APPLY (Multi-step CRM Form)
+     API ENDPOINT: POST /api/apply
+     Lead model: CandidateLead
+     ══════════════════════════════════ -->
+<div class="page" id="page-apply">
+  <div class="page-hero"><div class="container">
+    <p class="section-label" data-i18n="apply.label">Apply</p>
+    <h1 data-i18n="apply.hero.title">Start your<br><span>application</span></h1>
+    <p data-i18n="apply.hero.sub">Choose your path and submit your profile. Our team reviews your request and contacts you within 48 hours.</p>
+  </div></div>
+
+  <section style="background:var(--gray-bg);">
+    <div class="container">
+      <div class="multistep-wrapper" id="applyFormWrap">
+
+        <!-- Loading state -->
+        <div class="form-loading" id="applyLoading">
+          <div class="spinner"></div>
+          <p style="color:var(--gray-text);" data-i18n="loading.submitting">Submitting your application…</p>
+        </div>
+
+        <!-- Success state -->
+        <div class="form-success" id="applySuccess">
+          <div class="success-icon">🎉</div>
+          <h3 data-i18n="success.apply.title">Application submitted!</h3>
+          <p style="margin-bottom:1rem;">Thank you. Our team will review your profile and contact you via WhatsApp and email within 48 hours.</p>
+          <p style="color:var(--gray-text);font-size:0.88rem;">Questions? Reach us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1a2aeafb5a0a2b581b6a4b2b5a0a7b3a8a2a0acaea3a8ada8b5b8efa2aeac">[email&#160;protected]</a></strong><br>or WhatsApp: <strong>+40 748 788 643</strong></p>
+          <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a class="btn btn-primary" onclick="showPage('home')" data-i18n="success.apply.back">Back to Home</a>
+            <a class="btn btn-wa" href="https://wa.me/40748788643" target="_blank" data-i18n="cta.whatsapp_us">WhatsApp Us</a>
+          </div>
+        </div>
+
+        <!-- Error state -->
+        <div class="form-error" id="applyError">
+          <div style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+          <h3 data-i18n="error.apply_title">Submission failed</h3>
+          <p>Your data was saved locally. Please email us at <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="462529283227253206312335322720342f25272b29242f2a2f323f6825292b">[email&#160;protected]</a></strong></p>
+          <button class="retry-btn" onclick="resetApplyForm()" data-i18n="error.retry">Try again</button>
+        </div>
+
+        <!-- Form body -->
+        <div id="applyFormBody">
+          <!-- Progress bar -->
+          <div class="progress-bar"><div class="progress-fill" id="applyProgress" style="width:25%"></div></div>
+
+          <!-- Step indicator -->
+          <div class="step-indicator" id="stepIndicator">
+            <div class="step-dot active" id="dot-1"><div class="dot">1</div><label>Profile</label></div>
+            <div class="step-connector" id="conn-1"></div>
+            <div class="step-dot" id="dot-2"><div class="dot">2</div><label>Path</label></div>
+            <div class="step-connector" id="conn-2"></div>
+            <div class="step-dot" id="dot-3"><div class="dot">3</div><label>Details</label></div>
+            <div class="step-connector" id="conn-3"></div>
+            <div class="step-dot" id="dot-4"><div class="dot">4</div><label>Documents</label></div>
+            <div class="step-connector" id="conn-4"></div>
+            <div class="step-dot" id="dot-5"><div class="dot">5</div><label>Confirm</label></div>
+          </div>
+
+          <!-- STEP 1: Personal info -->
+          <div class="form-step active" id="fstep-1">
+            <h3 class="step-title" data-i18n="apply.step1.title">Step 1 — Your personal information</h3>
+            <div class="form-grid-2">
+              <div class="form-group"><label><span data-i18n="form.full_name">Full Name</span> <span class="req">*</span></label><input type="text" id="a_name" placeholder="Mohamed Diallo" data-i18n-placeholder="form.full_name"><div class="field-error" id="err_a_name" data-i18n-err="err.name">Please enter your full name.</div></div>
+              <div class="form-group"><label data-i18n="form.dob">Date of Birth</label><input type="date" id="a_dob"></div>
+              <div class="form-group"><label><span data-i18n="form.country">Country</span> <span class="req">*</span></label>
+                <select id="a_country"><option value="">Select country…</option><option>Senegal</option><option>Guinea</option><option>Ivory Coast</option><option>Mali</option><option>Burkina Faso</option><option>Cameroon</option><option>Morocco</option><option>Algeria</option><option>Tunisia</option><option>Nigeria</option><option>Ghana</option><option>Congo (DRC)</option><option>Other</option></select>
+                <div class="field-error" id="err_a_country" data-i18n-err="err.country">Please select your country.</div>
+              </div>
+              <div class="form-group"><label data-i18n="form.city">City</label><input type="text" id="a_city" placeholder="e.g. Dakar, Abidjan…" data-i18n-placeholder="form.city"></div>
+              <div class="form-group"><label><span data-i18n="form.whatsapp">WhatsApp Number</span> <span class="req">*</span></label><input type="tel" id="a_whatsapp" placeholder="+XXX XXXX XXXX"><div class="field-error" id="err_a_whatsapp" data-i18n-err="err.whatsapp">Please enter your WhatsApp number.</div></div>
+              <div class="form-group"><label><span data-i18n="form.email">Email Address</span> <span class="req">*</span></label><input type="email" id="a_email" placeholder="your@email.com" data-i18n-placeholder="form.email"><div class="field-error" id="err_a_email" data-i18n-err="err.email">Please enter a valid email address.</div></div>
+            </div>
+            <div class="form-nav"><span></span><button class="btn-next" onclick="applyNext(1)" data-i18n="form.continue">Continue → Step 2</button></div>
+          </div>
+
+          <!-- STEP 2: Path selection -->
+          <div class="form-step" id="fstep-2">
+            <h3 class="step-title" data-i18n="apply.step2.title">Step 2 — Choose your path</h3>
+            <div class="path-cards" id="pathCards">
+              <div class="path-card" onclick="selectPath(this,'Work')" id="path-work"><span class="picon">💼</span><h4>Work Application</h4><p>I want to work in Romania or Europe</p></div>
+              <div class="path-card" onclick="selectPath(this,'Study')" id="path-study"><span class="picon">🎓</span><h4>Study Application</h4><p>I want to study in Europe</p></div>
+            </div>
+            <input type="hidden" id="a_path" value="">
+            <div class="field-error show" id="err_a_path" style="display:none;">Please choose your path.</div>
+            <div class="form-grid-2">
+              <div class="form-group"><label data-i18n="form.preferred_dest">Preferred Destination</label>
+                <select id="a_destination"><option value="">Select country…</option><option>Romania</option><option>France</option><option>Germany</option><option>Belgium</option><option>Portugal</option><option>Spain</option><option>Other</option></select>
+              </div>
+              <div class="form-group"><label data-i18n="form.sector_field">Preferred Sector / Field</label><input type="text" id="a_sector" placeholder="e.g. Construction, IT, Business…" data-i18n-placeholder="form.sector_field"></div>
+            </div>
+            <div class="form-nav"><button class="btn-prev" onclick="applyPrev(2)">← Back</button><button class="btn-next" onclick="applyNext(2)" data-i18n="form.continue">Continue → Step 3</button></div>
+          </div>
+
+          <!-- STEP 3: Experience & education -->
+          <div class="form-step" id="fstep-3">
+            <h3 class="step-title" data-i18n="apply.step3.title">Step 3 — Your background</h3>
+            <div class="form-grid-2">
+              <div class="form-group"><label data-i18n="form.education">Education Level</label>
+                <select id="a_education"><option value="">Select…</option><option>Primary school</option><option>Secondary / High school</option><option>Vocational training / BEP / CAP</option><option>Bachelor's degree</option><option>Master's degree</option><option>Doctorate</option><option>No formal diploma</option></select>
+              </div>
+              <div class="form-group"><label data-i18n="form.experience">Work Experience</label>
+                <select id="a_experience"><option value="">Select…</option><option>No experience</option><option>Less than 1 year</option><option>1–3 years</option><option>3–5 years</option><option>5–10 years</option><option>10+ years</option></select>
+              </div>
+            </div>
+            <div class="form-group"><label data-i18n="form.background">Describe your professional background or academic project</label>
+              <textarea id="a_background" placeholder="e.g. I have 4 years of experience in construction and I want to work legally in Romania. I am motivated, disciplined and ready to move…"></textarea>
+            </div>
+            <div class="form-nav"><button class="btn-prev" onclick="applyPrev(3)">← Back</button><button class="btn-next" onclick="applyNext(3)" data-i18n="form.continue">Continue → Step 4</button></div>
+          </div>
+
+          <!-- STEP 4: Documents -->
+          <div class="form-step" id="fstep-4">
+            <h3 class="step-title" data-i18n="apply.step4.title">Step 4 — Documents</h3>
+            <div class="form-group"><label><span data-i18n="form.passport_q">Do you have a valid passport?</span> <span class="req">*</span></label>
+              <select id="a_passport"><option value="">Select…</option><option value="yes_valid">Yes, valid</option><option value="yes_expiring">Yes, but expiring soon</option><option value="no">No, not yet</option></select>
+            </div>
+            <p style="font-size:0.88rem;color:var(--gray-text);margin-bottom:1rem;">Upload your documents below (CV, diploma, passport copy). Accepted: PDF, JPG, PNG (max 5MB each)</p>
+
+            <!-- CV Upload -->
+            <div class="form-group">
+              <label data-i18n="form.upload_cv">Upload your CV</label>
+              <div class="file-upload-area" onclick="document.getElementById('a_cv').click()" id="cv_area">
+                <span class="upload-icon">📄</span>
+                <p><strong>Click to upload</strong> or drag and drop<br>PDF, DOC, DOCX (max 5MB)</p>
+                <input type="file" id="a_cv" accept=".pdf,.doc,.docx" onchange="handleFileUpload('a_cv','cv_area','cv_name')">
+                <p id="cv_name" style="color:var(--green);font-size:0.85rem;margin-top:0.5rem;display:none;"></p>
+              </div>
+            </div>
+
+            <!-- Passport Upload -->
+            <div class="form-group">
+              <label data-i18n="form.upload_passport">Upload Passport / ID copy (optional)</label>
+              <div class="file-upload-area" onclick="document.getElementById('a_passport_doc').click()" id="passport_area">
+                <span class="upload-icon">🪪</span>
+                <p><strong>Click to upload</strong> your passport copy<br>PDF, JPG, PNG (max 5MB)</p>
+                <input type="file" id="a_passport_doc" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileUpload('a_passport_doc','passport_area','passport_name')">
+                <p id="passport_name" style="color:var(--green);font-size:0.85rem;margin-top:0.5rem;display:none;"></p>
+              </div>
+            </div>
+
+            <!-- Diploma Upload -->
+            <div class="form-group">
+              <label data-i18n="form.upload_diploma">Upload Diploma / Certificate (optional)</label>
+              <div class="file-upload-area" onclick="document.getElementById('a_diploma').click()" id="diploma_area">
+                <span class="upload-icon">🎓</span>
+                <p><strong>Click to upload</strong> your diploma or certificate<br>PDF, JPG, PNG (max 5MB)</p>
+                <input type="file" id="a_diploma" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFileUpload('a_diploma','diploma_area','diploma_name')">
+                <p id="diploma_name" style="color:var(--green);font-size:0.85rem;margin-top:0.5rem;display:none;"></p>
+              </div>
+            </div>
+
+            <div class="notice-box">
+              <span class="notice-icon">📎</span>
+              <p>You can also send documents directly via WhatsApp: <strong>+40 748 788 643</strong> or email: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c2a1adacb6a3a1b682b5a7b1b6a3a4b0aba1a3afada0abaeabb6bbeca1adaf">[email&#160;protected]</a></strong> after submission.</p>
+            </div>
+            <div class="form-nav"><button class="btn-prev" onclick="applyPrev(4)">← Back</button><button class="btn-next" onclick="applyNext(4)" data-i18n="form.continue">Continue → Review</button></div>
+          </div>
+
+          <!-- STEP 5: Review & submit -->
+          <div class="form-step" id="fstep-5">
+            <h3 class="step-title" data-i18n="apply.step5.title">Step 5 — Review & submit</h3>
+            <div id="applyReviewBox" style="background:var(--green-xlight);border:1px solid rgba(15,139,109,0.2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;font-size:0.9rem;line-height:1.8;color:var(--green-dark);"></div>
+            <div class="form-group">
+              <label class="checkbox-group">
+                <input type="checkbox" id="a_consent">
+                <span data-i18n="form.consent_candidate">I confirm the information provided is accurate and I agree to WAM's <a href="#">privacy policy</a>. I consent to being contacted by WAM – West Africa Mobility (operated by SMARTGROUP GLOBAL SRL) regarding my application.</span>
+              </label>
+            </div>
+            <div class="notice-box">
+              <span class="notice-icon">ℹ️</span>
+              <p>WAM – West Africa Mobility (operated by <strong>SMARTGROUP GLOBAL SRL</strong>, registered in Romania) provides support and coordination services. Final admission, hiring, visa and permit decisions remain subject to the relevant institutions and authorities.</p>
+            </div>
+            <div class="form-nav" style="margin-top:1.5rem;">
+              <button class="btn-prev" onclick="applyPrev(5)">← Back</button>
+              <button class="btn-next" style="background:var(--gold);color:var(--black);padding:0.85rem 2rem;font-size:1rem;" onclick="submitApplyForm()" data-i18n="form.submit_app">Submit Application ✓</button>
+            </div>
+          </div>
+        </div><!-- end applyFormBody -->
+      </div><!-- end multistep-wrapper -->
+    </div>
+  </section>
+</div>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a class="wa-float" href="https://wa.me/40748788643" target="_blank">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">W<span>A</span>M</span>
+      <p data-i18n="footer.brand_desc">WAM – West Africa Mobility — Building structured bridges between African talent and European opportunities through transparent and professional mobility support.</p>
+      <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+        <a class="btn btn-primary" onclick="showPage('apply')" style="font-size:0.82rem;padding:0.5rem 1rem;" data-i18n="nav.apply">Apply Now</a>
+        <a class="btn btn-wa" href="https://wa.me/40748788643" target="_blank" style="font-size:0.82rem;padding:0.5rem 1rem;">WhatsApp</a>
+      </div>
+      <p class="footer-disclaimer">Operated by <strong style="color:rgba(255,255,255,0.5);">SMARTGROUP GLOBAL SRL</strong>, registered in Romania.<br>Bld. G-ral. Gheorghe Magheru nr. 31, et. 5, office no. 2, Sector 1, Bucharest, Romania.<br>WAM provides support and coordination. Final admission, hiring, visa and permit decisions remain subject to relevant institutions and authorities.</p>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.services">Services</h5>
+      <ul>
+        <li><a onclick="showPage('work')" data-i18n="nav.work">Work in Romania</a></li>
+        <li><a onclick="showPage('study')" data-i18n="nav.study">Study in Europe</a></li>
+        <li><a onclick="showPage('services')">Services & Pricing</a></li>
+        <li><a onclick="showPage('companies')" data-i18n="nav.companies">For Companies</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.company">Company</h5>
+      <ul>
+        <li><a onclick="showPage('about')" data-i18n="cta.about_wam">About WAM</a></li>
+        <li><a onclick="showPage('contact')" data-i18n="footer.contact">Contact</a></li>
+        <li><a onclick="showPage('apply')" data-i18n="footer.apply">Apply Now</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5 data-i18n="footer.contact_col">Contact</h5>
+      <ul>
+        <li><a>Bucharest, Romania</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#35565a5b4154564175425046415453475c5654585a575c595c414c1b565a58"><span class="__cf_email__" data-cfemail="ed8e8283998c8e99ad9a889e998c8b9f848e8c80828f8481849994c38e8280">[email&#160;protected]</span></a></li>
+        <li><a href="tel:+40748788643">+40 748 788 643</a></li>
+        <li><a data-i18n="footer.hours">Mon–Fri · 9:00–18:00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="footer.copyright">© 2025 WAM – West Africa Mobility. All rights reserved. Operated by SMARTGROUP GLOBAL SRL.</p>
+    <p style="color:rgba(255,255,255,0.25);" data-i18n="footer.legal_link">Legal · Privacy Policy</p>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT — CRM-READY LEAD CAPTURE SYSTEM
+     
+     Architecture:
+     - TypeScript interfaces defined as JSDoc comments
+     - Lead models: CandidateLead, CompanyLead, ContactLead
+     - Submission: fetch() → /api/apply | /api/company | /api/contact
+     - Fallback: localStorage backup if API fails
+     - Ready for: n8n webhook, Airtable, Google Sheets, Notion
+     
+     To connect n8n:
+       Replace API_BASE with your n8n webhook URL
+       or set up a Next.js API route that forwards to n8n
+     ══════════════════════════════════════════════════════════ -->
+<script>
+/* ────────────────────────────────────────────────────────────
+   CONFIGURATION
+   ────────────────────────────────────────────────────────────
+   To connect real endpoints, update API_BASE:
+   - Development: '' (relative)
+   - n8n webhook: 'https://your-n8n-instance.com/webhook'
+   - Custom backend: 'https://api.wam-mobility.com'
+   ──────────────────────────────────────────────────────────── */
+const API_BASE = ''; // ← REPLACE with your API base URL or n8n webhook
+const MOCK_SUBMISSION = true; // ← Set false in production
+
+/* ────────────────────────────────────────────────────────────
+   LEAD DATA MODELS (TypeScript interfaces in JSDoc)
+   
+   interface CandidateLead {
+     type: 'candidate';
+     submittedAt: string;         // ISO timestamp
+     fullName: string;
+     dateOfBirth?: string;
+     country: string;
+     city?: string;
+     whatsapp: string;
+     email: string;
+     path: 'Work' | 'Study';
+     destination?: string;
+     sector?: string;
+     educationLevel?: string;
+     workExperience?: string;
+     background?: string;
+     passportAvailable: string;
+     motivation?: string;
+     source: 'website_apply';
+     status: 'new';
+   }
+   
+   interface CompanyLead {
+     type: 'company';
+     submittedAt: string;
+     companyName: string;
+     contactPerson: string;
+     email: string;
+     phone: string;
+     sector: string;
+     workersNeeded?: string;
+     jobType?: string;
+     city?: string;
+     message?: string;
+     source: 'website_companies';
+     status: 'new';
+   }
+   
+   interface ContactLead {
+     type: 'contact';
+     submittedAt: string;
+     name: string;
+     email: string;
+     phone?: string;
+     subject: string;
+     message: string;
+     source: 'website_contact';
+     status: 'new';
+   }
+   ──────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────
+   LEAD SUBMISSION SERVICE
+   Handles: API call → success/error/fallback
+   ───────────────────────────────────────── */
+async function submitLead(endpoint, payload) {
+  // Save to localStorage as backup BEFORE trying API
+  // This ensures no lead is ever lost
+  saveleadLocally(payload);
+
+  if (MOCK_SUBMISSION) {
+    // MOCK: Simulate API response (remove in production)
+    await new Promise(r => setTimeout(r, 1500));
+    return { success: true, id: 'mock_' + Date.now() };
+  }
+
+  try {
+    // REAL API CALL
+    // For n8n: endpoint would be the full webhook URL
+    // For Next.js: endpoint is '/api/apply', '/api/company', '/api/contact'
+    const res = await fetch(API_BASE + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch (err) {
+    console.error('Lead submission failed:', err);
+    // Payload already saved locally — don't lose the lead
+    throw err;
+  }
+}
+
+/* ─────────────────────────────────────────
+   LOCAL STORAGE BACKUP
+   Fallback CRM: stores leads locally
+   Export via: getLeds() in browser console
+   ───────────────────────────────────────── */
+function saveleadLocally(lead) {
+  try {
+    const leads = JSON.parse(localStorage.getItem('wam_leads') || '[]');
+    leads.push({ ...lead, localSavedAt: new Date().toISOString() });
+    localStorage.setItem('wam_leads', JSON.stringify(leads));
+    console.log('[WAM CRM] Lead saved locally. Total:', leads.length);
+  } catch(e) { console.warn('[WAM CRM] localStorage unavailable'); }
+}
+
+// Export leads from console: window.getLeads()
+window.getLeads = () => JSON.parse(localStorage.getItem('wam_leads') || '[]');
+window.exportLeadsCSV = () => {
+  const leads = window.getLeads();
+  if (!leads.length) { alert('No leads yet.'); return; }
+  const keys = Object.keys(leads[0]);
+  const csv = [keys.join(','), ...leads.map(l => keys.map(k => JSON.stringify(l[k]||'')).join(','))].join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'wam_leads_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click();
+};
+
+/* ─────────────────────────────────────────
+   FORM STATE HELPERS
+   ───────────────────────────────────────── */
+function showFormState(prefix, state) {
+  ['Loading','Success','Error'].forEach(s => {
+    const el = document.getElementById(prefix + s);
+    if (el) el.style.display = 'none';
+  });
+  const body = document.getElementById(prefix + 'Body');
+  if (body) body.style.display = state === 'body' ? 'block' : 'none';
+  if (state !== 'body') {
+    const el = document.getElementById(prefix + state.charAt(0).toUpperCase() + state.slice(1));
+    if (el) el.style.display = 'block';
+  }
+}
+
+function resetForm(type) {
+  showFormState(type === 'contact' ? 'contact' : 'company', 'body');
+}
+
+/* ─────────────────────────────────────────
+   VALIDATION HELPERS
+   ───────────────────────────────────────── */
+function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function isEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+function showErr(id, show) {
+  const el = document.getElementById('err_' + id);
+  if (el) { el.style.display = show ? 'block' : 'none'; }
+  const inp = document.getElementById(id);
+  if (inp) { inp.classList.toggle('error', show); }
+}
+
+/* ─────────────────────────────────────────
+   CANDIDATE APPLICATION FORM (Multi-step)
+   API: POST /api/apply
+   ───────────────────────────────────────── */
+let applyCurrentStep = 1;
+const APPLY_TOTAL_STEPS = 5;
+
+function applyNext(step) {
+  if (!validateApplyStep(step)) return;
+  goToStep(step + 1);
+  if (step + 1 === 5) buildReviewBox();
+}
+
+function applyPrev(step) { goToStep(step - 1); }
+
+function validateApplyStep(step) {
+  let valid = true;
+  if (step === 1) {
+    if (!val('a_name')) { showErr('a_name', true); valid = false; } else showErr('a_name', false);
+    if (!val('a_country')) { showErr('a_country', true); valid = false; } else showErr('a_country', false);
+    if (!val('a_whatsapp')) { showErr('a_whatsapp', true); valid = false; } else showErr('a_whatsapp', false);
+    if (!val('a_email') || !isEmail(val('a_email'))) { showErr('a_email', true); valid = false; } else showErr('a_email', false);
+  }
+  if (step === 2) {
+    if (!val('a_path')) {
+      const err = document.getElementById('err_a_path');
+      if (err) { err.style.display = 'block'; }
+      valid = false;
+    } else {
+      const err = document.getElementById('err_a_path');
+      if (err) err.style.display = 'none';
+    }
+  }
+  return valid;
+}
+
+function goToStep(newStep) {
+  const oldStep = applyCurrentStep;
+  document.getElementById('fstep-' + oldStep).classList.remove('active');
+  document.getElementById('fstep-' + newStep).classList.add('active');
+
+  const dot = document.getElementById('dot-' + oldStep);
+  if (dot) { dot.classList.remove('active'); dot.classList.add('done'); }
+  const conn = document.getElementById('conn-' + oldStep);
+  if (conn && newStep > oldStep) conn.classList.add('done');
+
+  const newDot = document.getElementById('dot-' + newStep);
+  if (newDot) newDot.classList.add('active');
+
+  const progress = document.getElementById('applyProgress');
+  if (progress) progress.style.width = (newStep / APPLY_TOTAL_STEPS * 100) + '%';
+
+  applyCurrentStep = newStep;
+  document.querySelector('#applyFormWrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function selectPath(el, type) {
+  document.querySelectorAll('.path-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('a_path').value = type;
+}
+
+function buildReviewBox() {
+  const box = document.getElementById('applyReviewBox');
+  if (!box) return;
+  const ns = t('review.not_selected');
+  box.innerHTML = `
+    <strong>${t('review.summary')}</strong><br>
+    <strong>${t('review.name')}:</strong> ${val('a_name')} &nbsp;|&nbsp; <strong>${t('review.country')}:</strong> ${val('a_country') || ns}<br>
+    <strong>WhatsApp:</strong> ${val('a_whatsapp')} &nbsp;|&nbsp; <strong>Email:</strong> ${val('a_email')}<br>
+    <strong>${t('review.path')}:</strong> ${val('a_path') || ns} &nbsp;|&nbsp; <strong>${t('review.destination')}:</strong> ${val('a_destination') || '—'}<br>
+    <strong>${t('review.sector')}:</strong> ${val('a_sector') || '—'} &nbsp;|&nbsp; <strong>${t('review.education')}:</strong> ${val('a_education') || '—'}<br>
+    <strong>${t('review.passport')}:</strong> ${val('a_passport') || '—'}
+  `;
+}
+
+async function submitApplyForm() {
+  if (!document.getElementById('a_consent').checked) {
+    alert('Please accept the privacy policy to continue.');
+    return;
+  }
+
+  // Build CandidateLead payload
+  const lead = {
+    type: 'candidate',
+    submittedAt: new Date().toISOString(),
+    fullName: val('a_name'),
+    dateOfBirth: val('a_dob'),
+    country: val('a_country'),
+    city: val('a_city'),
+    whatsapp: val('a_whatsapp'),
+    email: val('a_email'),
+    path: val('a_path'),
+    destination: val('a_destination'),
+    sector: val('a_sector'),
+    educationLevel: val('a_education'),
+    workExperience: val('a_experience'),
+    background: val('a_background'),
+    passportAvailable: val('a_passport'),
+    source: 'website_apply',
+    status: 'new'
+    // Note: File uploads (CV, passport, diploma) are handled client-side
+    // For production: use multipart/form-data or upload to S3/Cloudinary first
+  };
+
+  showFormState('apply', 'loading');
+
+  try {
+    // API: POST /api/apply
+    // n8n webhook: POST to your n8n webhook URL with lead as body
+    // Airtable: POST to Airtable API /v0/{baseId}/{tableId}
+    // Google Sheets: POST via Google Apps Script or Zapier webhook
+    await submitLead('/api/apply', lead);
+    showFormState('apply', 'success');
+  } catch(e) {
+    showFormState('apply', 'error');
+  }
+}
+
+function resetApplyForm() {
+  showFormState('apply', 'body');
+  goToStep(1);
+}
+
+/* ─────────────────────────────────────────
+   COMPANY RECRUITMENT FORM
+   API: POST /api/company
+   ───────────────────────────────────────── */
+async function submitCompanyForm() {
+  const name = val('co_name'), contact = val('co_contact'),
+        email = val('co_email'), phone = val('co_phone'), sector = val('co_sector');
+
+  if (!name || !contact || !email || !phone || !sector) {
+    alert('Please fill in all required fields (*).');
+    return;
+  }
+  if (!isEmail(email)) { alert('Please enter a valid email.'); return; }
+  if (!document.getElementById('co_consent').checked) {
+    alert('Please accept the privacy policy.'); return;
+  }
+
+  // Build CompanyLead payload
+  const lead = {
+    type: 'company',
+    submittedAt: new Date().toISOString(),
+    companyName: name,
+    contactPerson: contact,
+    email: email,
+    phone: phone,
+    sector: sector,
+    workersNeeded: val('co_workers'),
+    jobType: val('co_jobtype'),
+    city: val('co_city'),
+    message: val('co_message'),
+    source: 'website_companies',
+    status: 'new'
+  };
+
+  document.getElementById('companyFormBody').style.display = 'none';
+  document.getElementById('companyLoading').style.display = 'block';
+
+  try {
+    // API: POST /api/company
+    await submitLead('/api/company', lead);
+    document.getElementById('companyLoading').style.display = 'none';
+    document.getElementById('companySuccess').style.display = 'block';
+  } catch(e) {
+    document.getElementById('companyLoading').style.display = 'none';
+    document.getElementById('companyError').style.display = 'block';
+  }
+}
+
+/* ─────────────────────────────────────────
+   CONTACT FORM
+   API: POST /api/contact
+   ───────────────────────────────────────── */
+async function submitContactForm() {
+  const name = val('ct_name'), email = val('ct_email'), msg = val('ct_message');
+  if (!name || !email || !msg) { alert('Please fill in all required fields.'); return; }
+  if (!isEmail(email)) { alert('Please enter a valid email.'); return; }
+  if (!document.getElementById('ct_consent').checked) {
+    alert('Please accept the privacy policy.'); return;
+  }
+
+  // Build ContactLead payload
+  const lead = {
+    type: 'contact',
+    submittedAt: new Date().toISOString(),
+    name: name,
+    email: email,
+    phone: val('ct_phone'),
+    subject: val('ct_subject'),
+    message: msg,
+    source: 'website_contact',
+    status: 'new'
+  };
+
+  showFormState('contact', 'loading');
+
+  try {
+    // API: POST /api/contact
+    await submitLead('/api/contact', lead);
+    showFormState('contact', 'success');
+  } catch(e) {
+    showFormState('contact', 'error');
+  }
+}
+
+/* ─────────────────────────────────────────
+   FILE UPLOAD HANDLER
+   ───────────────────────────────────────── */
+function handleFileUpload(inputId, areaId, nameId) {
+  const input = document.getElementById(inputId);
+  const area = document.getElementById(areaId);
+  const nameEl = document.getElementById(nameId);
+  if (!input || !input.files.length) return;
+  const file = input.files[0];
+  if (file.size > 5 * 1024 * 1024) { alert('File too large. Max 5MB.'); return; }
+  area.style.borderColor = 'var(--green)';
+  area.style.background = 'var(--green-light)';
+  if (nameEl) { nameEl.textContent = '✓ ' + file.name; nameEl.style.display = 'block'; }
+}
+
+/* ─────────────────────────────────────────
+   PAGE ROUTING
+   ───────────────────────────────────────── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('active'));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* Nav scroll */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+
+/* ══════════════════════════════════════════════════════════════
+   WAM – MULTILINGUAL SYSTEM
+   Languages: Français (fr) | English (en) | Română (ro)
+   Engine: data-i18n attribute-based DOM translation
+   Direction: LTR for all languages
+   Persistence: localStorage
+   ══════════════════════════════════════════════════════════════ */
+
+const WAM_TRANSLATIONS = {
+
+  /* ─────────────── FRANÇAIS ─────────────── */
+  fr: {
+    // Navigation
+    "nav.home": "Accueil",
+    "nav.work": "Travail en Roumanie",
+    "nav.study": "Étudier en Europe",
+    "nav.companies": "Entreprises",
+    "nav.services": "Services",
+    "nav.about": "À propos",
+    "nav.contact": "Contact",
+    "nav.apply": "Postuler",
+    "nav.apply_mobile": "Postuler maintenant ✓",
+    "nav.whatsapp": "WhatsApp",
+
+    // CTAs globaux
+    "cta.apply_arrow": "Postuler →",
+    "cta.apply_free": "Postuler — C'est gratuit",
+    "cta.apply_work": "Postuler pour travailler",
+    "cta.apply_study": "Postuler pour étudier",
+    "cta.book_consult": "Consultation gratuite",
+    "cta.book_consult2": "Prendre rendez-vous",
+    "cta.explore_work": "Voir les offres de travail →",
+    "cta.explore_study": "Voir les formations →",
+    "cta.start_work": "Démarrer ma candidature →",
+    "cta.begin_study": "Commencer le processus →",
+    "cta.about_wam": "À propos de WAM",
+    "cta.contact_us": "Nous contacter",
+    "cta.whatsapp_us": "Écrire sur WhatsApp",
+    "cta.speak_wa": "Parler sur WhatsApp",
+    "cta.request_recruit": "Demander un recrutement",
+    "cta.submit_company": "Soumettre la demande →",
+    "cta.send_message": "Envoyer le message →",
+
+    // Badges de confiance
+    "trust.legal": " Processus légal",
+    "trust.personalized": " Accompagnement personnalisé",
+    "trust.romania_team": " Équipe basée en Roumanie",
+
+    // Stats
+    "stats.legal": "Processus légal & transparent",
+    "stats.steps": "Étapes structurées",
+    "stats.destinations": "Destinations européennes",
+    "stats.response": "Délai de réponse",
+
+    // HOME
+    "home.hero.badge": "Mobilité Légale · Basé à Bucarest",
+    "home.hero.title": "Travaillez, Étudiez et<br><span>Construisez Votre Avenir</span><br>en Europe",
+    "home.hero.sub": "WAM – West Africa Mobility accompagne les travailleurs et étudiants africains vers des opportunités légales en Roumanie et en Europe, avec un processus transparent et guidé.",
+
+    "home.trust.label": "Un parcours structuré",
+    "home.trust.title": "Un accès transparent aux vraies opportunités européennes",
+    "home.trust.sub": "Chaque étape est guidée, légale et construite autour de votre projet.",
+    "home.trust.work.title": "Recrutement au travail",
+    "home.trust.work.desc": "Accédez à de vraies offres en Roumanie avec un accompagnement légal complet",
+    "home.trust.study.title": "Admission aux études",
+    "home.trust.study.desc": "Accompagnement pour la candidature universitaire de l'orientation à l'inscription",
+    "home.trust.arrival.title": "Assistance à l'arrivée",
+    "home.trust.arrival.desc": "Guidance pour vos premiers pas en Roumanie et en Europe",
+    "home.trust.company.title": "Partenariats entreprises",
+    "home.trust.company.desc": "Mise en relation directe avec les employeurs roumains en recherche de talent",
+
+    "home.process.label": "Comment ça marche",
+    "home.process.title": "Le processus WAM — 5 étapes claires",
+    "home.process.sub": "Des étapes claires, de vraies opportunités. De votre candidature à votre arrivée en Europe.",
+    "home.step1.title": "Soumettre votre candidature",
+    "home.step1.desc": "Remplissez votre profil et partagez vos objectifs",
+    "home.step2.title": "Analyse du profil",
+    "home.step2.desc": "Notre équipe analyse votre parcours et votre éligibilité",
+    "home.step3.title": "Guidance documents",
+    "home.step3.desc": "Nous vous guidons pour chaque document requis",
+    "home.step4.title": "Mise en relation",
+    "home.step4.desc": "Nous vous connectons au bon employeur ou à la bonne université",
+    "home.step5.title": "Soutien à l'arrivée",
+    "home.step5.desc": "Nous restons avec vous lors de votre arrivée en Europe",
+
+    "home.why.label": "Pourquoi WAM",
+    "home.why.title": "Une équipe qui comprend<br>votre parcours",
+    "home.why.text": "WAM a été créé par des personnes qui connaissent la mobilité internationale de l'intérieur. Basés à Bucarest, nous travaillons directement avec les communautés africaines.",
+
+    "home.cta.title": "Prêt à commencer votre parcours européen ?",
+    "home.cta.sub": "Que vous postuliez pour travailler ou étudier, WAM vous aide à avancer avec clarté et confiance.",
+
+    "work.title": "Travailler en Roumanie",
+    "work.hero.badge": "💼 Programme Travail",
+    "work.hero.title": "Travaillez en Roumanie avec un<br><span>processus légal et guidé</span>",
+    "work.hero.sub": "Nous aidons les candidats africains à accéder à de vraies offres d'emploi en Roumanie et à préparer chaque étape du processus de mobilité.",
+    "work.sectors.label": "Secteurs disponibles",
+    "work.sectors.title": "Les secteurs que nous couvrons",
+    "work.our_role.label": "Notre rôle",
+    "work.our_role.title": "Ce que WAM fait pour vous",
+    "work.our_role.text": "Nous coordonnons l'ensemble du processus pour que vous puissiez vous concentrer sur votre objectif : travailler légalement en Roumanie.",
+    "work.docs.label": "Documents",
+    "work.docs.title": "Documents souvent requis",
+    "work.cta.title": "Prêt à travailler en Roumanie ?",
+    "work.cta.sub": "Soumettez votre profil aujourd'hui. Notre équipe le traite sous 48h.",
+
+    "study.title": "Étudier en Europe",
+    "study.hero.badge": "🎓 Programme Études",
+    "study.hero.title": "Étudiez en Europe avec un<br><span>accompagnement structuré</span>",
+    "study.hero.sub": "De l'orientation universitaire à la préparation du visa et à l'installation, WAM vous aide à construire un parcours académique sérieux en Europe.",
+    "study.fields.label": "Domaines académiques",
+    "study.fields.title": "Programmes & Domaines d'études",
+    "study.support.label": "Accompagnement complet",
+    "study.support.title": "Soutien académique de A à Z",
+    "study.cta.title": "Construisez votre avenir académique en Europe",
+    "study.cta.sub": "Démarrez votre candidature aujourd'hui et laissez WAM vous guider vers une université européenne.",
+
+    "services.label": "Ce que nous proposons",
+    "services.title": "Services clairs.",
+    "services.title.part2": "Processus transparent.",
+    "services.pricing.label": "Tarifs",
+    "services.pricing.title": "Tarifs transparents",
+    "services.pricing.sub": "Contactez-nous pour un devis personnalisé selon votre profil.",
+
+    "companies.hero.badge": "🏢 Pour les Employeurs",
+    "companies.hero.title": "Recrutez des talents<br><span>africains fiables</span> pour votre<br>entreprise roumaine",
+    "companies.hero.sub": "WAM accompagne les employeurs roumains en identifiant des candidats africains motivés et en coordonnant un processus de mobilité structuré.",
+    "companies.sectors.label": "Secteurs desservis",
+    "companies.sectors.title": "Secteurs dans lesquels nous recrutons",
+    "companies.form.label": "Démarrer",
+    "companies.form.title": "Soumettre une demande de recrutement",
+    "companies.form.sub": "Notre équipe vous contacte sous 24 heures.",
+
+    "about.label": "Qui sommes-nous",
+    "about.title": "À propos de WAM",
+    "about.mission.title": "Notre Mission",
+    "about.mission.text": "Connecter les travailleurs et étudiants africains à de vraies opportunités en Europe grâce à des processus légaux, guidés et centrés sur l'humain — fondés sur la confiance et la transparence.",
+    "about.vision.title": "Notre Vision",
+    "about.vision.text": "Devenir une plateforme de mobilité de référence entre l'Afrique de l'Ouest et l'Europe — reconnue pour son intégrité, ses résultats et son impact réel.",
+    "about.values.label": "Nos engagements",
+    "about.values.title": "Nos Valeurs",
+    "about.founder.label": "Le fondateur",
+    "about.founder.title": "Construit par quelqu'un qui comprend le parcours",
+    "about.founder.text": "Fondé par Norbert Loua, basé à Bucarest en Roumanie, avec la mission de construire un écosystème de mobilité fiable et professionnel pour l'Afrique de l'Ouest.",
+
+    "contact.label": "Contactez-nous",
+    "contact.hero.title": "Parlons de<br>votre projet",
+    "contact.hero.sub": "La première consultation est toujours gratuite. Nous répondons sous 24 heures.",
+    "contact.form.title": "Envoyez-nous un message",
+
+    "apply.label": "Postuler",
+    "apply.hero.title": "Démarrez votre<br><span>candidature</span>",
+    "apply.hero.sub": "Choisissez votre parcours et soumettez votre profil. Notre équipe traite votre demande et vous contacte sous 48 heures.",
+    "apply.step1.title": "Étape 1 — Vos informations personnelles",
+    "apply.step2.title": "Étape 2 — Choisissez votre parcours",
+    "apply.step3.title": "Étape 3 — Votre parcours",
+    "apply.step4.title": "Étape 4 — Documents",
+    "apply.step5.title": "Étape 5 — Révision & soumettre",
+
+    "form.full_name": "Nom complet",
+    "form.dob": "Date de naissance",
+    "form.country": "Pays",
+    "form.city": "Ville",
+    "form.whatsapp": "Numéro WhatsApp",
+    "form.email": "Adresse email",
+    "form.select_country": "Sélectionner un pays…",
+    "form.select": "Sélectionner…",
+    "form.preferred_dest": "Destination souhaitée",
+    "form.sector_field": "Secteur / Domaine souhaité",
+    "form.education": "Niveau d'études",
+    "form.experience": "Expérience professionnelle",
+    "form.background": "Décrivez votre parcours professionnel ou projet académique",
+    "form.passport_q": "Avez-vous un passeport valide ?",
+    "form.upload_cv": "Télécharger votre CV",
+    "form.upload_passport": "Télécharger copie passeport / carte d'identité (optionnel)",
+    "form.upload_diploma": "Télécharger diplôme / certificat (optionnel)",
+    "form.motivation": "Motivation courte",
+    "form.consent_candidate": "Je confirme l'exactitude des informations et j'accepte la politique de confidentialité de WAM. Je consens à être contacté par WAM – West Africa Mobility.",
+    "form.company_name": "Nom de l'entreprise",
+    "form.contact_person": "Personne de contact",
+    "form.phone": "Téléphone / WhatsApp",
+    "form.sector": "Secteur",
+    "form.workers_needed": "Nombre de travailleurs",
+    "form.job_type": "Type de poste",
+    "form.city_location": "Ville / Localisation",
+    "form.message": "Message",
+    "form.consent": "J'accepte la politique de confidentialité de WAM et consens à être contacté.",
+    "form.name": "Nom",
+    "form.subject": "Sujet",
+    "form.click_upload": "<strong>Cliquez pour télécharger</strong> ou glissez-déposez",
+    "form.click_cv": "PDF, DOC, DOCX (max 5Mo)",
+    "form.click_img": "PDF, JPG, PNG (max 5Mo)",
+
+    "form.select_edu_1": "École primaire",
+    "form.select_edu_2": "Lycée / Secondaire",
+    "form.select_edu_3": "Formation professionnelle / BEP / CAP",
+    "form.select_edu_4": "Licence / Bachelor",
+    "form.select_edu_5": "Master",
+    "form.select_edu_6": "Doctorat",
+    "form.select_edu_7": "Aucun diplôme",
+    "form.select_exp_0": "Aucune expérience",
+    "form.select_exp_1": "Moins d'1 an",
+    "form.select_exp_2": "1–3 ans",
+    "form.select_exp_3": "3–5 ans",
+    "form.select_exp_4": "5–10 ans",
+    "form.select_exp_5": "10 ans et plus",
+    "form.passport_yes": "Oui, valide",
+    "form.passport_exp": "Oui, mais expire bientôt",
+    "form.passport_no": "Non, pas encore",
+
+    "form.work_path": "Candidature Travail",
+    "form.work_path_sub": "Je veux travailler en Roumanie ou en Europe",
+    "form.study_path": "Candidature Études",
+    "form.study_path_sub": "Je veux étudier en Europe",
+
+    "form.step.profile": "Profil",
+    "form.step.path": "Parcours",
+    "form.step.details": "Détails",
+    "form.step.documents": "Documents",
+    "form.step.confirm": "Confirmer",
+
+    "form.continue": "Continuer →",
+    "form.back": "← Retour",
+    "form.submit_app": "Soumettre ma candidature ✓",
+
+    "notice.doc_send": "Vous pouvez aussi envoyer vos documents directement via WhatsApp : <strong>+40 748 788 643</strong> ou email : <strong>contact@westafricamobility.com</strong> après soumission.",
+    "notice.legal": "WAM – West Africa Mobility (opéré par <strong>SMARTGROUP GLOBAL SRL</strong>, enregistré en Roumanie) fournit des services d'accompagnement et de coordination. Les décisions finales d'admission, d'embauche, de visa et de permis restent soumises aux institutions et autorités compétentes.",
+    "notice.work_legal": "WAM – West Africa Mobility (opéré par SMARTGROUP GLOBAL SRL) fournit des conseils et une coordination. Les décisions finales d'embauche et de permis restent soumises aux employeurs et aux autorités légales. Nous nous engageons à une totale transparence.",
+
+    "success.apply.title": "Candidature soumise !",
+    "success.apply.sub": "Merci. Notre équipe examinera votre profil et vous contactera par WhatsApp et email sous 48 heures.",
+    "success.apply.contact": "Questions ? Écrivez-nous à <strong>contact@westafricamobility.com</strong><br>ou WhatsApp : <strong>+40 748 788 643</strong>",
+    "success.apply.back": "Retour à l'accueil",
+    "success.company.title": "Demande reçue !",
+    "success.company.sub": "Notre équipe vous contactera sous 24 heures.<br>Email : <strong>contact@westafricamobility.com</strong>",
+    "success.contact.title": "Message envoyé !",
+    "success.contact.sub": "Nous vous répondrons sous 24 heures à <strong>contact@westafricamobility.com</strong>",
+
+    "footer.services": "Services",
+    "footer.company": "Entreprise",
+    "footer.contact_col": "Contact",
+    "footer.about": "À propos de WAM",
+    "footer.contact": "Contact",
+    "footer.apply": "Postuler",
+    "footer.disclaimer": "Opéré par <strong style='color:rgba(255,255,255,0.5)'>SMARTGROUP GLOBAL SRL</strong>, enregistré en Roumanie.<br>Bld. G-ral. Gheorghe Magheru nr. 31, et. 5, office no. 2, Sector 1, Bucarest, Roumanie.<br>WAM fournit des services d'accompagnement et de coordination. Les décisions finales d'admission, d'embauche, de visa et de permis restent soumises aux institutions et autorités compétentes.",
+    "footer.legal_short": "Opéré par SMARTGROUP GLOBAL SRL · Bucarest, Roumanie",
+    "footer.copyright": "© 2025 WAM – West Africa Mobility. Tous droits réservés. Opéré par SMARTGROUP GLOBAL SRL.",
+    "footer.legal_link": "Mentions légales · Politique de confidentialité",
+    "footer.brand_desc": "WAM – West Africa Mobility — Construire des passerelles structurées entre les talents africains et les opportunités européennes.",
+    "footer.hours": "Lun–Ven · 9h00–18h00",
+
+    "sector.construction": "Construction",
+    "sector.logistics": "Logistique",
+    "sector.manufacturing": "Industrie",
+    "sector.hospitality": "Hôtellerie",
+    "sector.agriculture": "Agriculture",
+    "sector.services": "Services",
+    "sector.it": "IT / Services",
+
+    "review.summary": "📋 Résumé de votre candidature :",
+    "review.name": "Nom",
+    "review.country": "Pays",
+    "review.path": "Parcours",
+    "review.destination": "Destination",
+    "review.sector": "Secteur",
+    "review.education": "Études",
+    "review.passport": "Passeport",
+    "review.not_selected": "Non sélectionné",
+
+    "loading.submitting": "Envoi en cours…",
+    "error.title": "Une erreur s'est produite",
+    "error.company": "Veuillez réessayer ou contactez-nous directement.",
+    "error.contact": "Veuillez nous écrire directement à <strong>contact@westafricamobility.com</strong>",
+    "error.apply_title": "Échec de soumission",
+    "error.apply": "Vos données ont été sauvegardées localement. Veuillez nous écrire à <strong>contact@westafricamobility.com</strong>",
+    "error.retry": "Réessayer",
+
+    "ci.address_label": "Adresse enregistrée",
+    "ci.email_label": "Email",
+    "ci.phone_label": "Téléphone / WhatsApp",
+    "ci.legal_label": "Entité légale",
+    "ci.hours_label": "Horaires",
+    "ci.hours_value": "Lun–Ven · 9h00–18h00 (Bucarest)",
+    "err.name": "Veuillez entrer votre nom complet.",
+    "err.country": "Veuillez sélectionner votre pays.",
+    "err.whatsapp": "Veuillez entrer votre numéro WhatsApp.",
+    "err.email": "Veuillez entrer une adresse email valide.",
+  },
+
+  /* ─────────────── ENGLISH ─────────────── */
+  en: {
+    "nav.home": "Home",
+    "nav.work": "Work in Romania",
+    "nav.study": "Study in Europe",
+    "nav.companies": "For Companies",
+    "nav.services": "Services",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "nav.apply": "Apply Now",
+    "nav.apply_mobile": "Apply Now ✓",
+    "nav.whatsapp": "WhatsApp",
+
+    "cta.apply_arrow": "Apply Now →",
+    "cta.apply_free": "Apply Now — It's Free",
+    "cta.apply_work": "Apply for Work",
+    "cta.apply_study": "Apply for Studies",
+    "cta.book_consult": "Book Free Consultation",
+    "cta.book_consult2": "Book Consultation",
+    "cta.explore_work": "Explore Work Opportunities →",
+    "cta.explore_study": "Explore Study Opportunities →",
+    "cta.start_work": "Start Work Application →",
+    "cta.begin_study": "Begin Student Process →",
+    "cta.about_wam": "About WAM",
+    "cta.contact_us": "Contact Us",
+    "cta.whatsapp_us": "WhatsApp Us",
+    "cta.speak_wa": "Speak on WhatsApp",
+    "cta.request_recruit": "Request Recruitment",
+    "cta.submit_company": "Submit Recruitment Request →",
+    "cta.send_message": "Send Message →",
+
+    "trust.legal": " Legal process",
+    "trust.personalized": " Personalized support",
+    "trust.romania_team": " Romania-based team",
+
+    "stats.legal": "Legal & transparent process",
+    "stats.steps": "Structured steps",
+    "stats.destinations": "European destinations",
+    "stats.response": "Response time",
+
+    "home.hero.badge": "Legal Mobility · Bucharest-Based Support",
+    "home.hero.title": "Work, Study and<br><span>Build Your Future</span><br>in Europe",
+    "home.hero.sub": "WAM – West Africa Mobility helps African workers and students access legal opportunities in Romania and Europe through a transparent, guided process.",
+
+    "home.trust.label": "A structured pathway",
+    "home.trust.title": "Transparent access to real European opportunities",
+    "home.trust.sub": "Every step is guided, legal and built around your project.",
+    "home.trust.work.title": "Work Recruitment",
+    "home.trust.work.desc": "Access real job opportunities in Romania with full legal guidance",
+    "home.trust.study.title": "Student Admission",
+    "home.trust.study.desc": "University application support from orientation to enrollment",
+    "home.trust.arrival.title": "Arrival Assistance",
+    "home.trust.arrival.desc": "Guidance for your first steps in Romania and Europe",
+    "home.trust.company.title": "Company Partnerships",
+    "home.trust.company.desc": "Direct connection with Romanian employers seeking talent",
+
+    "home.process.label": "How it works",
+    "home.process.title": "The WAM Process — 5 Clear Steps",
+    "home.process.sub": "Clear steps, real opportunities. From your application to your arrival in Europe.",
+    "home.step1.title": "Submit your application",
+    "home.step1.desc": "Fill out your profile and tell us your goals",
+    "home.step2.title": "Profile review",
+    "home.step2.desc": "Our team analyzes your background and eligibility",
+    "home.step3.title": "Document guidance",
+    "home.step3.desc": "We guide you through every required document",
+    "home.step4.title": "Opportunity match",
+    "home.step4.desc": "We connect you with the right employer or university",
+    "home.step5.title": "Arrival support",
+    "home.step5.desc": "We stay with you when you land in Europe",
+
+    "home.why.label": "Why WAM",
+    "home.why.title": "A team that understands<br>your journey",
+    "home.why.text": "WAM was built by people who know what it means to navigate international mobility. Based in Bucharest, we work directly with African communities.",
+
+    "home.cta.title": "Ready to start your Europe journey?",
+    "home.cta.sub": "Whether you are applying for work or studies, WAM helps you move with clarity and confidence.",
+
+    "work.title": "Work in Romania",
+    "work.hero.badge": "💼 Work Program",
+    "work.hero.title": "Work in Romania with a<br><span>legal and guided</span> process",
+    "work.hero.sub": "We help African candidates access real job opportunities in Romania and prepare for each step of the mobility process.",
+    "work.sectors.label": "Available sectors",
+    "work.sectors.title": "Job sectors we cover",
+    "work.our_role.label": "Our role",
+    "work.our_role.title": "What WAM does for you",
+    "work.our_role.text": "We coordinate the full process so you can focus on your goal — working legally in Romania.",
+    "work.docs.label": "Documents",
+    "work.docs.title": "Documents often required",
+    "work.cta.title": "Ready to work in Romania?",
+    "work.cta.sub": "Submit your profile today. Our team reviews it within 48 hours.",
+
+    "study.title": "Study in Europe",
+    "study.hero.badge": "🎓 Study Program",
+    "study.hero.title": "Study in Europe with<br><span>structured admission</span> support",
+    "study.hero.sub": "From university orientation to application and relocation, WAM helps students build a serious academic pathway in Europe.",
+    "study.fields.label": "Academic fields",
+    "study.fields.title": "Programs & Fields of study",
+    "study.support.label": "Full support",
+    "study.support.title": "Academic support from A to Z",
+    "study.cta.title": "Build your academic future in Europe",
+    "study.cta.sub": "Start your application today and let WAM guide you to a European university.",
+
+    "services.label": "What we offer",
+    "services.title": "Clear services.",
+    "services.title.part2": "Transparent process.",
+    "services.pricing.label": "Pricing",
+    "services.pricing.title": "Transparent pricing",
+    "services.pricing.sub": "Contact us for a personalized quote based on your profile.",
+
+    "companies.hero.badge": "🏢 For Employers",
+    "companies.hero.title": "Recruit reliable<br><span>African talent</span> for your<br>Romanian business",
+    "companies.hero.sub": "WAM supports Romanian employers by sourcing motivated African candidates and coordinating structured international mobility support.",
+    "companies.sectors.label": "Sectors we serve",
+    "companies.sectors.title": "Industries we recruit for",
+    "companies.form.label": "Get started",
+    "companies.form.title": "Submit a recruitment request",
+    "companies.form.sub": "Our team will contact you within 24 hours.",
+
+    "about.label": "Who we are",
+    "about.title": "About WAM",
+    "about.mission.title": "Our Mission",
+    "about.mission.text": "To connect African workers and students with real opportunities in Europe through legal, guided and human-centered processes — built on trust and transparency.",
+    "about.vision.title": "Our Vision",
+    "about.vision.text": "To become a trusted mobility platform between West Africa and Europe — recognized for its integrity, results, and genuine impact.",
+    "about.values.label": "What we stand for",
+    "about.values.title": "Our Values",
+    "about.founder.label": "The founder",
+    "about.founder.title": "Built by someone who understands the journey",
+    "about.founder.text": "Founded by Norbert Loua, based in Bucharest, Romania, with a mission to build a reliable and professional mobility ecosystem for West Africa.",
+
+    "contact.label": "Reach out",
+    "contact.hero.title": "Let's talk about<br>your project",
+    "contact.hero.sub": "First consultation is always free. We respond within 24 hours.",
+    "contact.form.title": "Send us a message",
+
+    "apply.label": "Apply",
+    "apply.hero.title": "Start your<br><span>application</span>",
+    "apply.hero.sub": "Choose your path and submit your profile. Our team reviews your request and contacts you within 48 hours.",
+    "apply.step1.title": "Step 1 — Your personal information",
+    "apply.step2.title": "Step 2 — Choose your path",
+    "apply.step3.title": "Step 3 — Your background",
+    "apply.step4.title": "Step 4 — Documents",
+    "apply.step5.title": "Step 5 — Review & submit",
+
+    "form.full_name": "Full Name",
+    "form.dob": "Date of Birth",
+    "form.country": "Country",
+    "form.city": "City",
+    "form.whatsapp": "WhatsApp Number",
+    "form.email": "Email Address",
+    "form.select_country": "Select country…",
+    "form.select": "Select…",
+    "form.preferred_dest": "Preferred Destination",
+    "form.sector_field": "Preferred Sector / Field",
+    "form.education": "Education Level",
+    "form.experience": "Work Experience",
+    "form.background": "Describe your professional background or academic project",
+    "form.passport_q": "Do you have a valid passport?",
+    "form.upload_cv": "Upload your CV",
+    "form.upload_passport": "Upload Passport / ID copy (optional)",
+    "form.upload_diploma": "Upload Diploma / Certificate (optional)",
+    "form.motivation": "Short motivation",
+    "form.consent_candidate": "I confirm the information provided is accurate and I agree to WAM's privacy policy. I consent to being contacted by WAM – West Africa Mobility.",
+    "form.company_name": "Company Name",
+    "form.contact_person": "Contact Person",
+    "form.phone": "Phone / WhatsApp",
+    "form.sector": "Sector",
+    "form.workers_needed": "Workers needed",
+    "form.job_type": "Job type",
+    "form.city_location": "City / Location",
+    "form.message": "Message",
+    "form.consent": "I agree to WAM's privacy policy and consent to being contacted.",
+    "form.name": "Name",
+    "form.subject": "Subject",
+    "form.click_upload": "<strong>Click to upload</strong> or drag and drop",
+    "form.click_cv": "PDF, DOC, DOCX (max 5MB)",
+    "form.click_img": "PDF, JPG, PNG (max 5MB)",
+
+    "form.select_edu_1": "Primary school",
+    "form.select_edu_2": "Secondary / High school",
+    "form.select_edu_3": "Vocational training / BEP / CAP",
+    "form.select_edu_4": "Bachelor's degree",
+    "form.select_edu_5": "Master's degree",
+    "form.select_edu_6": "Doctorate",
+    "form.select_edu_7": "No formal diploma",
+    "form.select_exp_0": "No experience",
+    "form.select_exp_1": "Less than 1 year",
+    "form.select_exp_2": "1–3 years",
+    "form.select_exp_3": "3–5 years",
+    "form.select_exp_4": "5–10 years",
+    "form.select_exp_5": "10+ years",
+    "form.passport_yes": "Yes, valid",
+    "form.passport_exp": "Yes, but expiring soon",
+    "form.passport_no": "No, not yet",
+
+    "form.work_path": "Work Application",
+    "form.work_path_sub": "I want to work in Romania or Europe",
+    "form.study_path": "Study Application",
+    "form.study_path_sub": "I want to study in Europe",
+
+    "form.step.profile": "Profile",
+    "form.step.path": "Path",
+    "form.step.details": "Details",
+    "form.step.documents": "Documents",
+    "form.step.confirm": "Confirm",
+
+    "form.continue": "Continue →",
+    "form.back": "← Back",
+    "form.submit_app": "Submit Application ✓",
+
+    "notice.doc_send": "You can also send documents via WhatsApp: <strong>+40 748 788 643</strong> or email: <strong>contact@westafricamobility.com</strong> after submission.",
+    "notice.legal": "WAM – West Africa Mobility (operated by <strong>SMARTGROUP GLOBAL SRL</strong>, registered in Romania) provides support and coordination services. Final admission, hiring, visa and permit decisions remain subject to the relevant institutions and authorities.",
+    "notice.work_legal": "WAM – West Africa Mobility (operated by SMARTGROUP GLOBAL SRL) provides guidance and coordination. Final hiring and work permit decisions remain subject to employer and legal authority approval. We are committed to full transparency.",
+
+    "success.apply.title": "Application submitted!",
+    "success.apply.sub": "Thank you. Our team will review your profile and contact you via WhatsApp and email within 48 hours.",
+    "success.apply.contact": "Questions? Reach us at <strong>contact@westafricamobility.com</strong><br>or WhatsApp: <strong>+40 748 788 643</strong>",
+    "success.apply.back": "Back to Home",
+    "success.company.title": "Request received!",
+    "success.company.sub": "Our team will contact you within 24 hours.<br>Email: <strong>contact@westafricamobility.com</strong>",
+    "success.contact.title": "Message sent!",
+    "success.contact.sub": "We'll get back to you within 24 hours at <strong>contact@westafricamobility.com</strong>",
+
+    "footer.services": "Services",
+    "footer.company": "Company",
+    "footer.contact_col": "Contact",
+    "footer.about": "About WAM",
+    "footer.contact": "Contact",
+    "footer.apply": "Apply Now",
+    "footer.disclaimer": "Operated by <strong style='color:rgba(255,255,255,0.5)'>SMARTGROUP GLOBAL SRL</strong>, registered in Romania.<br>Bld. G-ral. Gheorghe Magheru nr. 31, et. 5, office no. 2, Sector 1, Bucharest, Romania.<br>WAM provides support and coordination. Final admission, hiring, visa and permit decisions remain subject to relevant institutions and authorities.",
+    "footer.legal_short": "Operated by SMARTGROUP GLOBAL SRL · Bucharest, Romania",
+    "footer.copyright": "© 2025 WAM – West Africa Mobility. All rights reserved. Operated by SMARTGROUP GLOBAL SRL.",
+    "footer.legal_link": "Legal · Privacy Policy",
+    "footer.brand_desc": "WAM – West Africa Mobility — Building structured bridges between African talent and European opportunities.",
+    "footer.hours": "Mon–Fri · 9:00–18:00",
+
+    "sector.construction": "Construction",
+    "sector.logistics": "Logistics",
+    "sector.manufacturing": "Manufacturing",
+    "sector.hospitality": "Hospitality",
+    "sector.agriculture": "Agriculture",
+    "sector.services": "Services",
+    "sector.it": "IT / Services",
+
+    "review.summary": "📋 Your application summary:",
+    "review.name": "Name",
+    "review.country": "Country",
+    "review.path": "Path",
+    "review.destination": "Destination",
+    "review.sector": "Sector",
+    "review.education": "Education",
+    "review.passport": "Passport",
+    "review.not_selected": "Not selected",
+
+    "loading.submitting": "Sending…",
+    "error.title": "Something went wrong",
+    "error.company": "Please try again or contact us directly.",
+    "error.contact": "Please email us directly at <strong>contact@westafricamobility.com</strong>",
+    "error.apply_title": "Submission failed",
+    "error.apply": "Your data was saved locally. Please email us at <strong>contact@westafricamobility.com</strong>",
+    "error.retry": "Try again",
+
+    "ci.address_label": "Registered Address",
+    "ci.email_label": "Email",
+    "ci.phone_label": "Phone / WhatsApp",
+    "ci.legal_label": "Legal Entity",
+    "ci.hours_label": "Business Hours",
+    "ci.hours_value": "Mon–Fri · 9:00–18:00 (Bucharest)",
+    "err.name": "Please enter your full name.",
+    "err.country": "Please select your country.",
+    "err.whatsapp": "Please enter your WhatsApp number.",
+    "err.email": "Please enter a valid email address.",
+  },
+
+  /* ─────────────── ROMÂNĂ ─────────────── */
+  ro: {
+    "nav.home": "Acasă",
+    "nav.work": "Muncă în România",
+    "nav.study": "Studii în Europa",
+    "nav.companies": "Pentru Companii",
+    "nav.services": "Servicii",
+    "nav.about": "Despre Noi",
+    "nav.contact": "Contact",
+    "nav.apply": "Aplică Acum",
+    "nav.apply_mobile": "Aplică Acum ✓",
+    "nav.whatsapp": "WhatsApp",
+
+    "cta.apply_arrow": "Aplică Acum →",
+    "cta.apply_free": "Aplică Acum — Gratuit",
+    "cta.apply_work": "Aplică pentru Muncă",
+    "cta.apply_study": "Aplică pentru Studii",
+    "cta.book_consult": "Consultație Gratuită",
+    "cta.book_consult2": "Programează Consultație",
+    "cta.explore_work": "Explorează Oportunități de Muncă →",
+    "cta.explore_study": "Explorează Oportunități de Studiu →",
+    "cta.start_work": "Începe Dosarul de Muncă →",
+    "cta.begin_study": "Începe Procesul de Admitere →",
+    "cta.about_wam": "Despre WAM",
+    "cta.contact_us": "Contactează-ne",
+    "cta.whatsapp_us": "Scrie pe WhatsApp",
+    "cta.speak_wa": "Vorbește pe WhatsApp",
+    "cta.request_recruit": "Solicită Recrutare",
+    "cta.submit_company": "Trimite Cererea →",
+    "cta.send_message": "Trimite Mesajul →",
+
+    "trust.legal": " Proces legal",
+    "trust.personalized": " Suport personalizat",
+    "trust.romania_team": " Echipă bazată în România",
+
+    "stats.legal": "Proces legal și transparent",
+    "stats.steps": "Etape structurate",
+    "stats.destinations": "Destinații europene",
+    "stats.response": "Timp de răspuns",
+
+    "home.hero.badge": "Mobilitate Legală · Suport din București",
+    "home.hero.title": "Muncește, Studiază și<br><span>Construiește-ți Viitorul</span><br>în Europa",
+    "home.hero.sub": "WAM – West Africa Mobility ajută muncitorii și studenții africani să acceseze oportunități legale în România și Europa printr-un proces transparent și ghidat.",
+
+    "home.trust.label": "Un parcurs structurat",
+    "home.trust.title": "Acces transparent la oportunități europene reale",
+    "home.trust.sub": "Fiecare etapă este ghidată, legală și construită în jurul proiectului tău.",
+    "home.trust.work.title": "Recrutare pentru Muncă",
+    "home.trust.work.desc": "Accesează oferte de muncă reale în România cu îndrumare juridică completă",
+    "home.trust.study.title": "Admitere la Studii",
+    "home.trust.study.desc": "Suport pentru candidatura universitară de la orientare până la înmatriculare",
+    "home.trust.arrival.title": "Asistență la Sosire",
+    "home.trust.arrival.desc": "Îndrumare pentru primii tăi pași în România și Europa",
+    "home.trust.company.title": "Parteneriate cu Companii",
+    "home.trust.company.desc": "Conexiune directă cu angajatori români care caută talente",
+
+    "home.process.label": "Cum funcționează",
+    "home.process.title": "Procesul WAM — 5 Etape Claire",
+    "home.process.sub": "Etape clare, oportunități reale. De la cererea ta până la sosirea în Europa.",
+    "home.step1.title": "Depune cererea",
+    "home.step1.desc": "Completează-ți profilul și spune-ne obiectivele tale",
+    "home.step2.title": "Analiza profilului",
+    "home.step2.desc": "Echipa noastră analizează istoricul și eligibilitatea ta",
+    "home.step3.title": "Ghidare pentru documente",
+    "home.step3.desc": "Te ghidăm pentru fiecare document necesar",
+    "home.step4.title": "Potrivire cu oportunitatea",
+    "home.step4.desc": "Te conectăm cu angajatorul sau universitatea potrivită",
+    "home.step5.title": "Suport la sosire",
+    "home.step5.desc": "Rămânem alături de tine când ajungi în Europa",
+
+    "home.why.label": "De ce WAM",
+    "home.why.title": "O echipă care înțelege<br>parcursul tău",
+    "home.why.text": "WAM a fost construit de oameni care știu ce înseamnă mobilitatea internațională. Suntem bazați în București și lucrăm direct cu comunitățile africane.",
+
+    "home.cta.title": "Ești gata să-ți începi călătoria europeană?",
+    "home.cta.sub": "Indiferent dacă aplici pentru muncă sau studii, WAM te ajută să avansezi cu claritate și încredere.",
+
+    "work.title": "Muncă în România",
+    "work.hero.badge": "💼 Program de Muncă",
+    "work.hero.title": "Muncește în România cu un<br><span>proces legal și ghidat</span>",
+    "work.hero.sub": "Ajutăm candidații africani să acceseze oportunități reale de muncă în România și să se pregătească pentru fiecare etapă a procesului de mobilitate.",
+    "work.sectors.label": "Sectoare disponibile",
+    "work.sectors.title": "Sectoarele pe care le acoperim",
+    "work.our_role.label": "Rolul nostru",
+    "work.our_role.title": "Ce face WAM pentru tine",
+    "work.our_role.text": "Coordonăm întreg procesul pentru ca tu să te poți concentra pe obiectivul tău — să muncești legal în România.",
+    "work.docs.label": "Documente",
+    "work.docs.title": "Documente frecvent solicitate",
+    "work.cta.title": "Ești gata să muncești în România?",
+    "work.cta.sub": "Depune profilul astăzi. Echipa noastră îl analizează în 48 de ore.",
+
+    "study.title": "Studii în Europa",
+    "study.hero.badge": "🎓 Program de Studii",
+    "study.hero.title": "Studiază în Europa cu<br><span>suport structurat de admitere</span>",
+    "study.hero.sub": "De la orientarea universitară la candidatură și relocare, WAM ajută studenții să construiască un parcurs academic serios în Europa.",
+    "study.fields.label": "Domenii academice",
+    "study.fields.title": "Programe și Domenii de Studiu",
+    "study.support.label": "Suport complet",
+    "study.support.title": "Suport academic de la A la Z",
+    "study.cta.title": "Construiește-ți viitorul academic în Europa",
+    "study.cta.sub": "Începe candidatura astăzi și lasă WAM să te ghideze spre o universitate europeană.",
+
+    "services.label": "Ce oferim",
+    "services.title": "Servicii clare.",
+    "services.title.part2": "Proces transparent.",
+    "services.pricing.label": "Tarife",
+    "services.pricing.title": "Tarife transparente",
+    "services.pricing.sub": "Contactează-ne pentru o ofertă personalizată în funcție de profilul tău.",
+
+    "companies.hero.badge": "🏢 Pentru Angajatori",
+    "companies.hero.title": "Recrutează talente<br><span>africane de încredere</span> pentru<br>compania ta din România",
+    "companies.hero.sub": "WAM sprijină angajatorii români identificând candidați africani motivați și coordonând suportul de mobilitate internațională structurată.",
+    "companies.sectors.label": "Sectoare deservite",
+    "companies.sectors.title": "Industrii pentru care recrutăm",
+    "companies.form.label": "Începe",
+    "companies.form.title": "Trimite o cerere de recrutare",
+    "companies.form.sub": "Echipa noastră te contactează în 24 de ore.",
+
+    "about.label": "Cine suntem",
+    "about.title": "Despre WAM",
+    "about.mission.title": "Misiunea Noastră",
+    "about.mission.text": "Să conectăm muncitorii și studenții africani cu oportunități reale în Europa prin procese legale, ghidate și centrate pe om — construite pe încredere și transparență.",
+    "about.vision.title": "Viziunea Noastră",
+    "about.vision.text": "Să devenim o platformă de mobilitate de referință între Africa de Vest și Europa — recunoscută pentru integritate, rezultate și impact real.",
+    "about.values.label": "Ce apărăm",
+    "about.values.title": "Valorile Noastre",
+    "about.founder.label": "Fondatorul",
+    "about.founder.title": "Construit de cineva care înțelege parcursul",
+    "about.founder.text": "Fondat de Norbert Loua, cu sediul în București, România, cu misiunea de a construi un ecosistem de mobilitate fiabil și profesional pentru Africa de Vest.",
+
+    "contact.label": "Contactează-ne",
+    "contact.hero.title": "Să vorbim despre<br>proiectul tău",
+    "contact.hero.sub": "Prima consultație este întotdeauna gratuită. Răspundem în 24 de ore.",
+    "contact.form.title": "Trimite-ne un mesaj",
+
+    "apply.label": "Aplică",
+    "apply.hero.title": "Începe-ți<br><span>candidatura</span>",
+    "apply.hero.sub": "Alege parcursul tău și trimite-ți profilul. Echipa noastră analizează cererea și te contactează în 48 de ore.",
+    "apply.step1.title": "Etapa 1 — Informațiile tale personale",
+    "apply.step2.title": "Etapa 2 — Alege-ți parcursul",
+    "apply.step3.title": "Etapa 3 — Experiența ta",
+    "apply.step4.title": "Etapa 4 — Documente",
+    "apply.step5.title": "Etapa 5 — Verificare și trimitere",
+
+    "form.full_name": "Nume complet",
+    "form.dob": "Data nașterii",
+    "form.country": "Țara",
+    "form.city": "Orașul",
+    "form.whatsapp": "Număr WhatsApp",
+    "form.email": "Adresă de email",
+    "form.select_country": "Selectează țara…",
+    "form.select": "Selectează…",
+    "form.preferred_dest": "Destinație preferată",
+    "form.sector_field": "Sector / Domeniu preferat",
+    "form.education": "Nivel de studii",
+    "form.experience": "Experiență profesională",
+    "form.background": "Descrie parcursul tău profesional sau proiectul academic",
+    "form.passport_q": "Ai pașaport valabil?",
+    "form.upload_cv": "Încarcă CV-ul tău",
+    "form.upload_passport": "Încarcă copie pașaport / carte de identitate (opțional)",
+    "form.upload_diploma": "Încarcă diplomă / certificat (opțional)",
+    "form.motivation": "Motivație scurtă",
+    "form.consent_candidate": "Confirm că informațiile furnizate sunt corecte și sunt de acord cu politica de confidențialitate WAM. Îmi dau acordul să fiu contactat de WAM – West Africa Mobility.",
+    "form.company_name": "Numele companiei",
+    "form.contact_person": "Persoana de contact",
+    "form.phone": "Telefon / WhatsApp",
+    "form.sector": "Sector",
+    "form.workers_needed": "Număr de muncitori necesari",
+    "form.job_type": "Tipul postului",
+    "form.city_location": "Oraș / Locație",
+    "form.message": "Mesaj",
+    "form.consent": "Sunt de acord cu politica de confidențialitate WAM și îmi dau acordul să fiu contactat.",
+    "form.name": "Nume",
+    "form.subject": "Subiect",
+    "form.click_upload": "<strong>Click pentru încărcare</strong> sau glisați și plasați",
+    "form.click_cv": "PDF, DOC, DOCX (max 5MB)",
+    "form.click_img": "PDF, JPG, PNG (max 5MB)",
+
+    "form.select_edu_1": "Școala primară",
+    "form.select_edu_2": "Liceu / Secundar",
+    "form.select_edu_3": "Formare profesională / Certificat",
+    "form.select_edu_4": "Licență / Bachelor",
+    "form.select_edu_5": "Master",
+    "form.select_edu_6": "Doctorat",
+    "form.select_edu_7": "Fără diplomă",
+    "form.select_exp_0": "Fără experiență",
+    "form.select_exp_1": "Mai puțin de 1 an",
+    "form.select_exp_2": "1–3 ani",
+    "form.select_exp_3": "3–5 ani",
+    "form.select_exp_4": "5–10 ani",
+    "form.select_exp_5": "Peste 10 ani",
+    "form.passport_yes": "Da, valabil",
+    "form.passport_exp": "Da, dar expiră curând",
+    "form.passport_no": "Nu, încă nu",
+
+    "form.work_path": "Candidatură pentru Muncă",
+    "form.work_path_sub": "Vreau să muncesc în România sau Europa",
+    "form.study_path": "Candidatură pentru Studii",
+    "form.study_path_sub": "Vreau să studiez în Europa",
+
+    "form.step.profile": "Profil",
+    "form.step.path": "Parcurs",
+    "form.step.details": "Detalii",
+    "form.step.documents": "Documente",
+    "form.step.confirm": "Confirmare",
+
+    "form.continue": "Continuă →",
+    "form.back": "← Înapoi",
+    "form.submit_app": "Trimite Candidatura ✓",
+
+    "notice.doc_send": "Poți trimite documentele și direct pe WhatsApp: <strong>+40 748 788 643</strong> sau email: <strong>contact@westafricamobility.com</strong> după trimitere.",
+    "notice.legal": "WAM – West Africa Mobility (operat de <strong>SMARTGROUP GLOBAL SRL</strong>, înregistrată în România) oferă servicii de suport și coordonare. Deciziile finale de admitere, angajare, viză și permis rămân supuse instituțiilor și autorităților competente.",
+    "notice.work_legal": "WAM – West Africa Mobility (operat de SMARTGROUP GLOBAL SRL) oferă îndrumare și coordonare. Deciziile finale de angajare și permis de muncă rămân la latitudinea angajatorilor și autorităților legale. Ne angajăm la transparență totală.",
+
+    "success.apply.title": "Candidatură trimisă!",
+    "success.apply.sub": "Mulțumim. Echipa noastră va analiza profilul tău și te va contacta prin WhatsApp și email în 48 de ore.",
+    "success.apply.contact": "Întrebări? Scrie-ne la <strong>contact@westafricamobility.com</strong><br>sau WhatsApp: <strong>+40 748 788 643</strong>",
+    "success.apply.back": "Înapoi la Pagina Principală",
+    "success.company.title": "Cerere primită!",
+    "success.company.sub": "Echipa noastră te va contacta în 24 de ore.<br>Email: <strong>contact@westafricamobility.com</strong>",
+    "success.contact.title": "Mesaj trimis!",
+    "success.contact.sub": "Îți vom răspunde în 24 de ore la <strong>contact@westafricamobility.com</strong>",
+
+    "footer.services": "Servicii",
+    "footer.company": "Companie",
+    "footer.contact_col": "Contact",
+    "footer.about": "Despre WAM",
+    "footer.contact": "Contact",
+    "footer.apply": "Aplică Acum",
+    "footer.disclaimer": "Operat de <strong style='color:rgba(255,255,255,0.5)'>SMARTGROUP GLOBAL SRL</strong>, înregistrată în România.<br>Bld. G-ral. Gheorghe Magheru nr. 31, et. 5, office no. 2, Sector 1, București, România.<br>WAM oferă servicii de suport și coordonare. Deciziile finale de admitere, angajare, viză și permis rămân supuse instituțiilor competente.",
+    "footer.legal_short": "Operat de SMARTGROUP GLOBAL SRL · București, România",
+    "footer.copyright": "© 2025 WAM – West Africa Mobility. Toate drepturile rezervate. Operat de SMARTGROUP GLOBAL SRL.",
+    "footer.legal_link": "Legal · Politica de Confidențialitate",
+    "footer.brand_desc": "WAM – West Africa Mobility — Construind punți structurate între talentele africane și oportunitățile europene.",
+    "footer.hours": "Lun–Vin · 9:00–18:00",
+
+    "sector.construction": "Construcții",
+    "sector.logistics": "Logistică",
+    "sector.manufacturing": "Producție",
+    "sector.hospitality": "Ospitalitate",
+    "sector.agriculture": "Agricultură",
+    "sector.services": "Servicii",
+    "sector.it": "IT / Servicii",
+
+    "review.summary": "📋 Rezumatul candidaturii tale:",
+    "review.name": "Nume",
+    "review.country": "Țara",
+    "review.path": "Parcurs",
+    "review.destination": "Destinație",
+    "review.sector": "Sector",
+    "review.education": "Studii",
+    "review.passport": "Pașaport",
+    "review.not_selected": "Neselectat",
+
+    "loading.submitting": "Se trimite…",
+    "error.title": "A apărut o eroare",
+    "error.company": "Te rugăm să încerci din nou sau contactează-ne direct.",
+    "error.contact": "Te rugăm să ne scrii direct la <strong>contact@westafricamobility.com</strong>",
+    "error.apply_title": "Trimiterea a eșuat",
+    "error.apply": "Datele tale au fost salvate local. Te rugăm să ne scrii la <strong>contact@westafricamobility.com</strong>",
+    "error.retry": "Încearcă din nou",
+
+    "ci.address_label": "Adresă înregistrată",
+    "ci.email_label": "Email",
+    "ci.phone_label": "Telefon / WhatsApp",
+    "ci.legal_label": "Entitate juridică",
+    "ci.hours_label": "Program de lucru",
+    "ci.hours_value": "Lun–Vin · 9:00–18:00 (București)",
+
+    "err.name": "Te rugăm să introduci numele complet.",
+    "err.country": "Te rugăm să selectezi țara.",
+    "err.whatsapp": "Te rugăm să introduci numărul de WhatsApp.",
+    "err.email": "Te rugăm să introduci o adresă de email validă."
+  }
+
+};
+
+/* ══════════════════════════════════════════
+   i18n ENGINE
+   ══════════════════════════════════════════ */
+let currentLang = localStorage.getItem('wam_lang') || 'fr';
+
+function t(key) {
+  return WAM_TRANSLATIONS[currentLang]?.[key] || WAM_TRANSLATIONS['fr']?.[key] || key;
+}
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  localStorage.setItem('wam_lang', lang);
+  applyTranslations();
+  updateLangButtons();
+  updateRTL();
+  updateHtmlLang();
+}
+
+function applyTranslations() {
+  document.body.classList.add('lang-changing');
+
+  setTimeout(() => {
+    // Translate all data-i18n elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const translation = t(key);
+      if (translation) el.innerHTML = translation;
+    });
+
+    // Translate placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      const translation = t(key);
+      if (translation) el.setAttribute('placeholder', translation);
+    });
+
+    // Update dynamic form elements
+    updateFormTranslations();
+
+    document.body.classList.remove('lang-changing');
+  }, 120);
+}
+
+function updateFormTranslations() {
+  // Update step dot labels
+  const stepLabels = ['form.step.profile','form.step.path','form.step.details','form.step.documents','form.step.confirm'];
+  document.querySelectorAll('.step-dot label').forEach((el, i) => {
+    if (stepLabels[i]) el.textContent = t(stepLabels[i]);
+  });
+
+  // Update path cards
+  const pathWork = document.getElementById('path-work');
+  if (pathWork) {
+    pathWork.querySelector('h4').textContent = t('form.work_path');
+    pathWork.querySelector('p').textContent = t('form.work_path_sub');
+  }
+  const pathStudy = document.getElementById('path-study');
+  if (pathStudy) {
+    pathStudy.querySelector('h4').textContent = t('form.study_path');
+    pathStudy.querySelector('p').textContent = t('form.study_path_sub');
+  }
+
+  // Update select options for education
+  const eduSel = document.getElementById('a_education');
+  if (eduSel) {
+    const eduKeys = ['form.select_edu_1','form.select_edu_2','form.select_edu_3','form.select_edu_4','form.select_edu_5','form.select_edu_6','form.select_edu_7'];
+    Array.from(eduSel.options).slice(1).forEach((opt, i) => {
+      if (eduKeys[i]) opt.textContent = t(eduKeys[i]);
+    });
+  }
+
+  // Update select options for experience
+  const expSel = document.getElementById('a_experience');
+  if (expSel) {
+    const expKeys = ['form.select_exp_0','form.select_exp_1','form.select_exp_2','form.select_exp_3','form.select_exp_4','form.select_exp_5'];
+    Array.from(expSel.options).slice(1).forEach((opt, i) => {
+      if (expKeys[i]) opt.textContent = t(expKeys[i]);
+    });
+  }
+
+  // Update passport select
+  const passSel = document.getElementById('a_passport');
+  if (passSel) {
+    const passKeys = ['form.passport_yes','form.passport_exp','form.passport_no'];
+    Array.from(passSel.options).slice(1).forEach((opt, i) => {
+      if (passKeys[i]) opt.textContent = t(passKeys[i]);
+    });
+  }
+
+  // Update field error messages
+  document.querySelectorAll('[data-i18n-err]').forEach(el => {
+    const key = el.getAttribute('data-i18n-err');
+    const translation = t(key);
+    if (translation) el.textContent = translation;
+  });
+
+  // Update sector cards
+  const sectorMap = {
+    'Construction': 'sector.construction',
+    'Logistics': 'sector.logistics',
+    'Manufacturing': 'sector.manufacturing',
+    'Hospitality': 'sector.hospitality',
+    'Agriculture': 'sector.agriculture'
+  };
+  document.querySelectorAll('.sector-card span:last-child').forEach(el => {
+    const orig = el.getAttribute('data-orig') || el.textContent;
+    el.setAttribute('data-orig', orig);
+    const key = sectorMap[orig];
+    if (key) el.textContent = t(key);
+  });
+
+  // Button next/prev in apply form
+  document.querySelectorAll('.btn-next').forEach(btn => {
+    if (!btn.getAttribute('data-key')) return;
+  });
+}
+
+function updateLangButtons() {
+  // Desktop
+  ['fr','en','ro'].forEach(lang => {
+    const btn = document.getElementById('btn-' + lang);
+    if (btn) btn.classList.toggle('active', lang === currentLang);
+    const mbtn = document.getElementById('mbtn-' + lang);
+    if (mbtn) mbtn.classList.toggle('active', lang === currentLang);
+  });
+}
+
+function updateRTL() {
+  // Romanian is LTR — all supported languages are LTR
+  document.body.classList.remove('rtl');
+  document.documentElement.setAttribute('dir', 'ltr');
+  document.documentElement.setAttribute('lang', currentLang);
+}
+
+function updateHtmlLang() {
+  document.documentElement.setAttribute('lang', currentLang);
+}
+
+// Init on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  updateLangButtons();
+  updateRTL();
+  updateHtmlLang();
+  applyTranslations();
+});
+// Also run immediately for elements already in DOM
+updateLangButtons();
+updateRTL();
+</script>
+</body>
+</html>
