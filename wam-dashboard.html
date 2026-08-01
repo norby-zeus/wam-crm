@@ -73,7 +73,10 @@
 
     /* ── APP ── */
     #app { display:none; min-height:100vh; }
-    .layout { display:grid; grid-template-columns:240px 1fr; min-height:100vh; }
+    /* La sidebar est en position:fixed (hors flux) : .main occupe toute la
+       largeur et se décale avec margin-left — pas de grille ici, sinon .main
+       tombe dans la colonne de 240px et le contenu est écrasé. */
+    .layout { display:block; min-height:100vh; }
 
     /* ── SIDEBAR ── */
     .sidebar {

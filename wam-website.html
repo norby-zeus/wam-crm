@@ -1532,15 +1532,17 @@ footer{background:var(--black);padding:4rem 3rem 2rem;border-top:1px solid rgba(
      ══════════════════════════════════════════════════════════ -->
 <script>
 /* ────────────────────────────────────────────────────────────
-   CONFIGURATION
+   CONFIGURATION — connecté au CRM WAM (Supabase)
    ────────────────────────────────────────────────────────────
-   To connect real endpoints, update API_BASE:
-   - Development: '' (relative)
-   - n8n webhook: 'https://your-n8n-instance.com/webhook'
-   - Custom backend: 'https://api.wam-mobility.com'
+   Les leads sont insérés directement dans la table `leads`
+   de Supabase — la même que lit wam-dashboard.html.
+   N8N_WEBHOOK (optionnel) : reçoit une copie brute du lead
+   pour automatisations (email, WhatsApp, Sheets…).
    ──────────────────────────────────────────────────────────── */
-const API_BASE = ''; // ← REPLACE with your API base URL or n8n webhook
-const MOCK_SUBMISSION = true; // ← Set false in production
+const SUPABASE_URL = 'https://qybbgekcmppwksojkxlu.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_iVI6QYIYVbGZ9uvTWGdQZA_CqdhvR4s';
+const N8N_WEBHOOK = ''; // ← optionnel : URL complète du webhook n8n
+const MOCK_SUBMISSION = false;
 
 /* ────────────────────────────────────────────────────────────
    LEAD DATA MODELS (TypeScript interfaces in JSDoc)
@@ -1611,22 +1613,117 @@ async function submitLead(endpoint, payload) {
   }
 
   try {
-    // REAL API CALL
-    // For n8n: endpoint would be the full webhook URL
-    // For Next.js: endpoint is '/api/apply', '/api/company', '/api/contact'
-    const res = await fetch(API_BASE + endpoint, {
+    // Insertion directe dans la table `leads` du CRM (Supabase REST)
+    const row = mapLeadToCRM(payload);
+    const res = await fetch(SUPABASE_URL + '/rest/v1/leads', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify([row])
     });
 
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    return await res.json();
+    if (!res.ok) throw new Error('HTTP ' + res.status + ' — ' + await res.text());
+
+    // Copie optionnelle vers n8n (non bloquante)
+    if (N8N_WEBHOOK) {
+      fetch(N8N_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+    }
+
+    return { success: true };
   } catch (err) {
     console.error('Lead submission failed:', err);
     // Payload already saved locally — don't lose the lead
     throw err;
   }
+}
+
+/* ─────────────────────────────────────────
+   MAPPING SITE → CRM
+   Convertit les payloads des 3 formulaires
+   vers les colonnes de la table `leads` :
+   nom, prenom, email, telephone, nationalite,
+   programme, source, statut, notes
+   ───────────────────────────────────────── */
+function splitName(full) {
+  const parts = (full || '').trim().split(/\s+/);
+  if (parts.length <= 1) return { prenom: null, nom: parts[0] || null };
+  return { prenom: parts[0], nom: parts.slice(1).join(' ') };
+}
+
+function mapLeadToCRM(p) {
+  const note = (label, v) => (v ? label + ': ' + v : null);
+
+  if (p.type === 'candidate') {
+    const { prenom, nom } = splitName(p.fullName);
+    return {
+      nom, prenom,
+      email: p.email || null,
+      telephone: p.whatsapp || null,
+      nationalite: p.country || null,
+      programme: p.path === 'Study' ? 'etudes_standard' : 'travail',
+      source: 'site',
+      statut: 'nouveau',
+      notes: [
+        'Candidature via le site web',
+        note('Destination', p.destination),
+        note('Secteur', p.sector),
+        note('Ville', p.city),
+        note('Date de naissance', p.dateOfBirth),
+        note('Niveau d\'études', p.educationLevel),
+        note('Expérience', p.workExperience),
+        note('Passeport', p.passportAvailable),
+        note('Parcours', p.background),
+        note('Motivation', p.motivation)
+      ].filter(Boolean).join(' | ')
+    };
+  }
+
+  if (p.type === 'company') {
+    return {
+      nom: p.companyName || null,
+      prenom: null,
+      email: p.email || null,
+      telephone: p.phone || null,
+      nationalite: null,
+      programme: 'b2b',
+      source: 'site',
+      statut: 'nouveau',
+      notes: [
+        'Demande de recrutement entreprise',
+        note('Contact', p.contactPerson),
+        note('Secteur', p.sector),
+        note('Postes à pourvoir', p.workersNeeded),
+        note('Type de contrat', p.jobType),
+        note('Ville', p.city),
+        note('Message', p.message)
+      ].filter(Boolean).join(' | ')
+    };
+  }
+
+  // type === 'contact'
+  const { prenom, nom } = splitName(p.name);
+  return {
+    nom, prenom,
+    email: p.email || null,
+    telephone: p.phone || null,
+    nationalite: null,
+    programme: null,
+    source: 'site',
+    statut: 'nouveau',
+    notes: [
+      'Message via le formulaire de contact',
+      note('Sujet', p.subject),
+      note('Message', p.message)
+    ].filter(Boolean).join(' | ')
+  };
 }
 
 /* ─────────────────────────────────────────
